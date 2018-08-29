@@ -1,7 +1,7 @@
 #include "tdserver.h"
 #include <string.h>
 
-/* 获取玩家编号
+/* 获取全服唯一的玩家编号
    param[fd]:玩家对应的套接字描述符
 */
 void TDServer::GetPlayerNumber(const int &fd)
@@ -10,7 +10,7 @@ void TDServer::GetPlayerNumber(const int &fd)
     if(player->size() == SERVER_MAX)
     {
         char ch[1022]{0};
-        SendMessage(fd, UNIVERSIAL_VERSION, GET_PLAYER_MSG, ch);
+        SendMessage(fd, UNIVERSIAL_VERSION, GET_PLAYER_MSG, ch);//发送0表示服务器已满
         release_mutex(lock_p, player_cv, player_use);
         return;
     }
@@ -29,9 +29,7 @@ void TDServer::GetPlayerNumber(const int &fd)
     release_mutex(lock_h, hall_cv, hall_use);
     SendMessage(fd, UNIVERSIAL_VERSION, GET_PLAYER_MSG, CalTool::to_array(current));
 }
-/* 获取房间编号
-   param[fd]:玩家对应的套接字描述符
-*/
+/* 获取全服唯一的房间编号 */
 unsigned short TDServer::GetRoomNumber()
 {
     std::unique_lock<std::mutex> *lock = add_mutex(room_mutex, room_cv, room_use);
@@ -51,8 +49,9 @@ unsigned short TDServer::GetRoomNumber()
     release_mutex(lock, room_cv, room_use);
     return current;
 }
-/*信息列表
+/* 获取房间信息列表消息
    param[fd]:玩家对应的套接字描述符
+   param[version]:通信的版本
 */
 void TDServer::GetRoomMsg(const int &fd, const char &version)
 {
@@ -71,6 +70,7 @@ void TDServer::GetRoomMsg(const int &fd, const char &version)
 /* 创建房间消息
    param[fd]:玩家对应的套接字描述符
    param[msg]:消息内容
+   param[version]:通信版本
 */
 void TDServer::CreateRoom(const int &fd, const char *msg, const char &version)
 {
@@ -101,7 +101,10 @@ void TDServer::CreateRoom(const int &fd, const char *msg, const char &version)
     release_mutex(lock, room_cv, room_use);
     SendMessage(fd, version, GET_ROOM_MSG, CalTool::to_array(room_id));
 }
-//解散房间
+/* 解散房间
+   param[msg]:消息内容
+   param[version]:通信版本
+*/
 void TDServer::DissolveRoom(const char *msg, const char &version)
 {
     char *message = new char[2];
@@ -128,7 +131,10 @@ void TDServer::DissolveRoom(const char *msg, const char &version)
     release_mutex(lock_p, player_cv, player_use);
     delete[] message;
 }
-//准备消息
+/* 玩家准备消息
+   param[msg]:消息内容
+   param[version]:通信版本
+*/
 void TDServer::ReadyMsg(const char *msg, const char &version)
 {
     char id[8];
@@ -148,7 +154,12 @@ void TDServer::ReadyMsg(const char *msg, const char &version)
     release_mutex(lock, room_cv, room_use);
     release_mutex(lock_p, player_cv, player_use);
 }
-//玩家进入房间
+
+/* 玩家进入房间消息
+   param[fd]:玩家对应的套接字描述符
+   param[msg]:消息内容
+   param[version]:通信版本
+*/
 void TDServer::EnterRoom(const int &fd, const char *msg, const char &version)
 {
     char room_id[2], player_id[8];
@@ -200,7 +211,10 @@ void TDServer::EnterRoom(const int &fd, const char *msg, const char &version)
     hall->erase(hall->find(p_id));
     release_mutex(lock_h, hall_cv, hall_use);
 }
-//玩家退出房间
+/* 玩家退出房间消息
+   param[msg]:消息内容
+   param[version]:通信版本
+*/
 void TDServer::ExitRoom(const char *msg, const char &version)
 {
     char player_id[8];
@@ -229,7 +243,11 @@ void TDServer::ExitRoom(const char *msg, const char &version)
     hall->insert(p_id);
     release_mutex(lock_h, hall_cv, hall_use);
 }
-//获取房间内所有玩家信息列表
+/* 获取房间内所有玩家信息的消息
+   param[fd]:玩家对应的套接字描述符
+   param[msg]:消息内容
+   param[version]:通信版本
+*/
 void TDServer::GetPlayerMsg(const int &fd, const char* msg, const char &version)
 {
     char *result = new char[1022], *res = result;
