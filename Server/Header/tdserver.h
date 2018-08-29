@@ -17,7 +17,7 @@
 #define SERVER_MAX 0xFFFFFFFF //服务器最大玩家承载数量
 #define ROOM_MAX 0xFFFF  //最大的房间数量
 
-#define UNIVERSIAL_VERSION 255
+#define UNIVERSIAL_VERSION 255 //通用版本号（每一个版本都需要接收的消息）
 //消息类型
 #define GET_PLAYER_MSG 0 //新人连接获取玩家编号事件
 #define GET_ROOM_MSG 1 //获取房间信息事件
