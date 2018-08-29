@@ -274,3 +274,33 @@ void TDServer::GetPlayerMsg(const int &fd, const char* msg, const char &version)
     release_mutex(lock_p, player_cv, player_use);
     SendMessage(fd, version, GET_PLAYER_LIST_MSG, result);
 }
+
+/* 玩家退出游戏大厅消息
+   param[fd]:玩家对应的套接字描述符
+   param[msg]:消息内容
+   param[version]:通信版本
+*/
+void TDServer::ExitHall(const int &fd, const char *msg, const char &version)
+{
+
+}
+
+/* 修改房间信息消息
+   param[fd]:玩家对应的套接字描述符
+   param[msg]:消息内容
+   param[version]:通信版本
+*/
+void TDServer::ChangeMapMsg(const int &fd, const char *msg, const char &version)
+{
+
+}
+
+/* 修改地图信息消息
+   param[fd]:玩家对应的套接字描述符
+   param[msg]:消息内容
+   param[version]:通信版本
+*/
+void TDServer::ChangeRoomMsg(const int &fd, const char *msg, const char &version)
+{
+
+}
