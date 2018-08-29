@@ -22,11 +22,15 @@
 #define GET_PLAYER_MSG 0 //新人连接获取玩家编号事件
 #define GET_ROOM_MSG 1 //获取房间信息事件
 #define CREATE_ROOM_MSG 2 //创建房间事件
+#define EXIT_HALL_MSG 3 //退出游戏大厅事件
 #define DISSOLVE_ROOM_MSG 150 //解散房间事件
 #define READY_SIGNAL_MSG 51 //准备信息事件
 #define ENTER_ROOM_MSG 52 //进入房间事件
 #define EXIT_ROOM_MSG 53 //退出房间事件
 #define GET_PLAYER_LIST_MSG 54 //获取房间内玩家信息列表
+#define CHANGE_ROOM_MSG 55 //修改房间信息事件
+#define CHANGE_MAP_MSG 56 //修改地图信息事件
+
 #define BUILT_TOWER_MSG 101 //建造塔事件
 #define DESTROY_TOWER_MSG 102 //摧毁塔事件
 #define UPGRADE_TOWER_MSG 103 //升级塔事件
@@ -93,6 +97,9 @@ private:
     void EnterRoom(const int &fd, const char *msg, const char &version);//玩家进入房间事件
     void ExitRoom(const char *msg, const char &version);//玩家退出房间事件
     void GetPlayerMsg(const int &fd, const char *msg, const char &version);//获取玩家信息列表事件
+    void ChangeRoomMsg(const int &fd, const char *msg, const char &version);
+    void ChangeMapMsg(const int &fd, const char *msg, const char &version);
+    void ExitHall(const int &fd, const char *msg, const char &version);
 public:
     TDServer();
     ~TDServer();
