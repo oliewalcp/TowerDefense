@@ -97,9 +97,9 @@ private:
     void EnterRoom(const int &fd, const char *msg, const char &version);//玩家进入房间事件
     void ExitRoom(const char *msg, const char &version);//玩家退出房间事件
     void GetPlayerMsg(const int &fd, const char *msg, const char &version);//获取玩家信息列表事件
-    void ChangeRoomMsg(const int &fd, const char *msg, const char &version);
-    void ChangeMapMsg(const int &fd, const char *msg, const char &version);
-    void ExitHall(const int &fd, const char *msg, const char &version);
+    void ChangeRoomMsg(const int &fd, const char *msg, const char &version);//改变房间信息事件
+    void ChangeMapMsg(const int &fd, const char *msg, const char &version);//改变地图信息事件
+    void ExitHall(const int &fd, const char *msg, const char &version);//玩家退出游戏大厅事件
 public:
     TDServer();
     ~TDServer();
