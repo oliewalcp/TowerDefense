@@ -282,17 +282,14 @@ void TDServer::GetPlayerMsg(const int &fd, const char* msg, const char &version)
 */
 void TDServer::ExitHall(const int &fd, const char *msg, const char &version)
 {
+    char player_id[8];
+    memcpy(player_id, msg, 8);
+    __uint64 p_id = *(__uint64 *)player_id;
 
-}
-
-/* 修改房间信息消息
-   param[fd]:玩家对应的套接字描述符
-   param[msg]:消息内容
-   param[version]:通信版本
-*/
-void TDServer::ChangeMapMsg(const int &fd, const char *msg, const char &version)
-{
-
+    auto lock_h = add_mutex(hall_mutex, hall_cv, hall_use);
+    hall->erase(hall->find(p_id));
+    release_mutex(lock_h, hall_cv, hall_use);
+    SendMessage(fd, version, EXIT_HALL_MSG, msg);
 }
 
 /* 修改地图信息消息
@@ -300,7 +297,44 @@ void TDServer::ChangeMapMsg(const int &fd, const char *msg, const char &version)
    param[msg]:消息内容
    param[version]:通信版本
 */
+void TDServer::ChangeMapMsg(const int &fd, const char *msg, const char &version)
+{
+    Room *temp_r = new Room(fd);
+    std::unique_lock<std::mutex> *lock_p = add_mutex(player_mutex, player_cv, player_use);
+    std::unique_lock<std::mutex> *lock = add_mutex(room_mutex, room_cv, room_use);
+    Room *target_r = *(room->find(temp_r));
+    delete temp_r;
+    for(int i = 0; i < MAX_PLAYER; i++)
+    {
+        if(target_r->player[i] == 0) continue;
+        Player *temp = player->find(target_r->player[i])->second;
+        if(temp->socket_fd == fd) continue;
+        SendMessage(temp->socket_fd, version, CHANGE_MAP_MSG, msg);
+    }
+    release_mutex(lock, room_cv, room_use);
+    release_mutex(lock_p, player_cv, player_use);
+}
+
+/* 修改房间信息消息
+   param[fd]:玩家对应的套接字描述符
+   param[msg]:消息内容
+   param[version]:通信版本
+*/
 void TDServer::ChangeRoomMsg(const int &fd, const char *msg, const char &version)
 {
-
+    Room *temp_r = new Room(msg);
+    std::unique_lock<std::mutex> *lock_p = add_mutex(player_mutex, player_cv, player_use);
+    std::unique_lock<std::mutex> *lock = add_mutex(room_mutex, room_cv, room_use);
+    Room *target_r = *(room->find(temp_r));
+    target_r->Parse(msg);
+    delete temp_r;
+    for(int i = 0; i < MAX_PLAYER; i++)
+    {
+        if(target_r->player[i] == 0) continue;
+        Player *temp = player->find(target_r->player[i])->second;
+        if(temp->socket_fd == fd) continue;
+        SendMessage(temp->socket_fd, version, CHANGE_ROOM_MSG, msg);
+    }
+    release_mutex(lock, room_cv, room_use);
+    release_mutex(lock_p, player_cv, player_use);
 }
