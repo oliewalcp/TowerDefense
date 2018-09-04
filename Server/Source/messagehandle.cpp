@@ -232,7 +232,7 @@ void TDServer::ExitRoom(const char *msg, const char &version)
     for(int i = 0; i < 4; i++)
     {
         SendMessage(player->find(target_r->player[i])->second->socket_fd, version, EXIT_ROOM_MSG, msg);
-        if(p_id = target_r->player[i])
+        if(p_id == target_r->player[i])
             target_r->player[i] = 0;
     }
     temp_p->room_id = 0;
