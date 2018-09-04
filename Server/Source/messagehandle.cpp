@@ -162,9 +162,7 @@ void TDServer::ReadyMsg(const char *msg, const char &version)
 */
 void TDServer::EnterRoom(const int &fd, const char *msg, const char &version)
 {
-    char room_id[2], player_id[8];
-    room_id[0] = msg[0];
-    room_id[1] = msg[1];
+    char room_id[2]{msg[0], msg[1]}, player_id[8];
     memcpy(player_id, msg + 2, 8);
     __uint64 p_id = *(__uint64 *)player_id;
     __uint16 r_id = *(__uint16 *)room_id;
@@ -266,8 +264,8 @@ void TDServer::GetPlayerMsg(const int &fd, const char* msg, const char &version)
         if(target_r->player[i] == 0) continue;
         Player *temp = player->find(target_r->player[i])->second;
         res[0] = temp->status;
-        memcpy(res, player_id, 8);
-        memcpy(res, temp->name, 18);
+        memcpy(res + 1, player_id, 8);
+        memcpy(res + 9, temp->name, 18);
         res += 27;
     }
     release_mutex(lock, room_cv, room_use);
