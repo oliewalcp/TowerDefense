@@ -30,6 +30,7 @@
 #define GET_PLAYER_LIST_MSG 54 //获取房间内玩家信息列表
 #define CHANGE_ROOM_MSG 55 //修改房间信息事件
 #define CHANGE_MAP_MSG 56 //修改地图信息事件
+#define SELECT_MAP_MSG 100 //
 
 #define BUILT_TOWER_MSG 101 //建造塔事件
 #define DESTROY_TOWER_MSG 102 //摧毁塔事件
@@ -100,6 +101,7 @@ private:
     void ChangeRoomMsg(const int &fd, const char *msg, const char &version);//改变房间信息事件
     void ChangeMapMsg(const int &fd, const char *msg, const char &version);//改变地图信息事件
     void ExitHall(const int &fd, const char *msg, const char &version);//玩家退出游戏大厅事件
+    void SelectMapMsg(const char *msg, const char &version);
 public:
     TDServer();
     ~TDServer();
