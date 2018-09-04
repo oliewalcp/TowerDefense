@@ -292,6 +292,24 @@ void TDServer::ExitHall(const int &fd, const char *msg, const char &version)
     SendMessage(fd, version, EXIT_HALL_MSG, msg);
 }
 
+void TDServer::SelectMapMsg(const char *msg, const char &version)
+{
+    char room_id[2]{msg[0], msg[1]};
+    std::unique_lock<std::mutex> *lock_p = add_mutex(player_mutex, player_cv, player_use);
+    std::unique_lock<std::mutex> *lock = add_mutex(room_mutex, room_cv, room_use);
+    Room *temp_r = new Room(*((unsigned short *)room_id));
+    Room *target_r = *(room->find(temp_r));
+    delete temp_r;
+    for(int i = 0; i < MAX_PLAYER; i++)
+    {
+        if(target_r->player[i] == 0) continue;
+        Player *temp = player->find(target_r->player[i])->second;
+        SendMessage(temp->socket_fd, version, SELECT_MAP_MSG, msg);
+    }
+    release_mutex(lock, room_cv, room_use);
+    release_mutex(lock_p, player_cv, player_use);
+}
+
 /* 修改地图信息消息
    param[fd]:玩家对应的套接字描述符
    param[msg]:消息内容
