@@ -43,6 +43,7 @@ public class SpecialEffect {
 public class Tower {
 	public string name{get; set;} //塔的名称
 	public double damage{get; set;} //攻击力
+	public int attack_type{get; set;} //攻击类型
 	public double crit_rate{get; set;} //暴击率
 	public double crit_damage{get; set;} //暴击伤害倍率
 	public int attack_range{get; set;} //攻击范围
