@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using System;
 public class LocalMessage {
 	private static SocketCom.MessageHandler handler = null;
 	public static ulong LocalPlayerNumber = 0;//本机玩家编号
@@ -28,14 +29,35 @@ public class LocalMessage {
 	public static void SetMap(byte[] arg, int grid_bit = 2){
 		ushort lineNumber = arg[4], columnNumber = arg[5];
 		Map = new byte[lineNumber][];
-		int i, j;
-		for(i = 0; i < lineNumber; i++){
-			Map[i] = new byte[columnNumber];
-			ushort lastShift = 0;//上一次移位
-			byte temp = arg[i + 6];
-			for(j = 0; j + grid_bit < 8; j++){
-				//未完待续
+		int line, column, currentBit, lastShift = 0, currentByte = 6, tempShift = 0;
+		for(line = 0; line < lineNumber; line++){
+			column = 0;
+			Map[line] = new byte[columnNumber];
+			byte temp = arg[currentByte++];
+			for(currentBit = 0; true; currentBit += grid_bit){
+				byte t = 0;
+				if(currentBit + grid_bit > 8) {
+					lastShift = grid_bit + 8 - currentBit;//保存已经获取到的位数
+					tempShift = grid_bit - lastShift;//获取需要保留的位数
+					Map[line][column] = GetByte(temp >> (8 - lastShift));
+					temp = arg[currentByte++];//读取下一字节
+					currentBit = 0;
+				}
+				t = GetByte(temp << (currentBit + grid_bit) >> (8 - currentBit - grid_bit + tempShift));
+				if(tempShift == 0) {
+					currentBit += grid_bit;
+					Map[line][column++] = t;
+				} else {
+					currentBit += tempShift;
+					Map[line][column] = GetByte((Map[line][column] << lastShift) | t);
+				}
+				lastShift = tempShift = 0;
+				if(column == columnNumber) break;
 			}
 		}
+	}
+
+	private static byte GetByte(int num){
+		return BitConverter.GetBytes(num)[0];
 	}
 }
