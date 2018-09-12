@@ -79,4 +79,11 @@ public class UIFunction {
 		rect.y = newPosition.y;
 	}
 
+	public static void Set3DPosition(ref GameObject go, Vector3 newPosition){
+		go.transform.localPosition = newPosition;
+	}
+
+	public static void SetScale(ref GameObject go, ref Vector3 newScale){
+		go.transform.localScale = newScale;
+	}
 }
