@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System;
+using UnityEngine;
 public class LocalMessage {
 	private static SocketCom.MessageHandler handler = null;
 	public static ulong LocalPlayerNumber = 0;//本机玩家编号
@@ -8,6 +9,7 @@ public class LocalMessage {
 	public static byte[][] Map = null;//地图
 	public static SocketCom scom = new SocketCom();
 	public static Thread comThread = new Thread(Loop);
+	public static byte[] Bit_n = {0x00, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80};
 
 	private static void Loop(){
 		if(handler != null)
@@ -29,35 +31,46 @@ public class LocalMessage {
 	public static void SetMap(byte[] arg, int grid_bit = 2){
 		ushort lineNumber = arg[4], columnNumber = arg[5];
 		Map = new byte[lineNumber][];
+		int totalBytes = lineNumber * columnNumber * grid_bit / 8 + 6;
 		int line, column, currentBit, lastShift = 0, currentByte = 6, tempShift = 0;
+		byte temp = arg[currentByte++];
 		for(line = 0; line < lineNumber; line++){
 			column = 0;
 			Map[line] = new byte[columnNumber];
-			byte temp = arg[currentByte++];
 			for(currentBit = 0; true; currentBit += grid_bit){
-				byte t = 0;
 				if(currentBit + grid_bit > 8) {
-					lastShift = grid_bit + 8 - currentBit;//保存已经获取到的位数
+					lastShift = 8 - currentBit;//保存已经获取到的位数
 					tempShift = grid_bit - lastShift;//获取需要保留的位数
-					Map[line][column] = GetByte(temp >> (8 - lastShift));
+					Map[line][column] = GetLowBit(temp, lastShift);
 					temp = arg[currentByte++];//读取下一字节
 					currentBit = 0;
 				}
-				t = GetByte(temp << (currentBit + grid_bit) >> (8 - currentBit - grid_bit + tempShift));
 				if(tempShift == 0) {
 					currentBit += grid_bit;
-					Map[line][column++] = t;
+					Map[line][column++] = GetLowBit(temp, grid_bit);
+					temp >>= grid_bit;
 				} else {
 					currentBit += tempShift;
-					Map[line][column] = GetByte((Map[line][column] << lastShift) | t);
+					Map[line][column] <<= lastShift;
+					Map[line][column] |= GetLowBit(temp, tempShift);
+					temp >>= tempShift;
 				}
 				lastShift = tempShift = 0;
+				if(currentByte == totalBytes) return;
 				if(column == columnNumber) break;
 			}
 		}
 	}
-
-	private static byte GetByte(int num){
-		return BitConverter.GetBytes(num)[0];
+	/* 获取一个数的低n位
+	   param[arg]:原数
+	   param[bit_num]:要获取的最低的位数
+	 */
+	private static byte GetLowBit(byte arg, int bit_num){
+		byte result = 0;
+		for(int i = 1; i <= bit_num; i++){
+			result |= Bit_n[i];
+		}
+		result &= arg;
+		return result;
 	}
 }
