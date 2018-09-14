@@ -1,15 +1,27 @@
 ﻿using System.Threading;
 using System;
 using UnityEngine;
+//地图每一格
+public struct Grid {
+	public float width;
+	public float height;
+}
+public struct GPosition {
+	public byte x;
+	public byte y;
+}
 public class LocalMessage {
 	private static SocketCom.MessageHandler handler = null;
 	public static ulong LocalPlayerNumber = 0;//本机玩家编号
 	public static ushort LocalRoomNumber = 0;//本机所在房间号
 	public static byte LocalIdentity = 1;//0房主，1普通玩家
 	public static byte[][] Map = null;//地图
+	public static Grid grid = new Grid();//地图每一格的大小
+	public static GPosition StartGrid = new GPosition();//地图的起点坐标（格子数坐标）
+	public static GPosition EndGrid = new GPosition();//地图的终点坐标（格子数坐标）
 	public static SocketCom scom = new SocketCom();
 	public static Thread comThread = new Thread(Loop);
-	public static byte[] Bit_n = {0x00, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80};
+	public static byte[] Bit_n = {0x00, 0x01, 0x03, 0x07, 0x0F, 0x1F, 0x3F, 0x7F, 0xFF};
 
 	private static void Loop(){
 		if(handler != null)
@@ -30,18 +42,21 @@ public class LocalMessage {
 	*/
 	public static void SetMap(byte[] arg, int grid_bit = 2){
 		ushort lineNumber = arg[4], columnNumber = arg[5];
+		StartGrid.x = arg[6];
+		StartGrid.y = arg[7];
+		EndGrid.x = arg[8];
+		EndGrid.y = arg[9];
 		Map = new byte[lineNumber][];
-		int totalBytes = lineNumber * columnNumber * grid_bit / 8 + 6;
-		int line, column, currentBit, lastShift = 0, currentByte = 6, tempShift = 0;
+		int line, column, currentBit = 0, currentByte = 10, tempShift = 0;
 		byte temp = arg[currentByte++];
 		for(line = 0; line < lineNumber; line++){
-			column = 0;
 			Map[line] = new byte[columnNumber];
-			for(currentBit = 0; true; currentBit += grid_bit){
+			for(column = 0; true;){
 				if(currentBit + grid_bit > 8) {
-					lastShift = 8 - currentBit;//保存已经获取到的位数
+					int lastShift = 8 - currentBit;//保存已经获取到的位数
 					tempShift = grid_bit - lastShift;//获取需要保留的位数
 					Map[line][column] = GetLowBit(temp, lastShift);
+					if(tempShift == 0) column++;
 					temp = arg[currentByte++];//读取下一字节
 					currentBit = 0;
 				}
@@ -51,12 +66,11 @@ public class LocalMessage {
 					temp >>= grid_bit;
 				} else {
 					currentBit += tempShift;
-					Map[line][column] <<= lastShift;
-					Map[line][column] |= GetLowBit(temp, tempShift);
+					Map[line][column] <<= tempShift;
+					Map[line][column++] |= GetLowBit(temp, tempShift);
 					temp >>= tempShift;
 				}
-				lastShift = tempShift = 0;
-				if(currentByte == totalBytes) return;
+				tempShift = 0;
 				if(column == columnNumber) break;
 			}
 		}
@@ -67,9 +81,7 @@ public class LocalMessage {
 	 */
 	private static byte GetLowBit(byte arg, int bit_num){
 		byte result = 0;
-		for(int i = 1; i <= bit_num; i++){
-			result |= Bit_n[i];
-		}
+		result |= Bit_n[bit_num];
 		result &= arg;
 		return result;
 	}
