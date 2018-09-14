@@ -65,7 +65,10 @@ public class UIFunction {
 			case 2:statusText.text = "未准备";break;
 		}
 	}
-
+	/* 设置物体的大小
+	   param[go]:需要改变的物体
+	   param[newSize]:新的大小
+	 */
 	public static void SetSize(ref GameObject go, Vector2 newSize) {
 		RectTransform trans = go.GetComponent<RectTransform>();
 		Vector2 oldSize = trans.rect.size;
@@ -73,17 +76,53 @@ public class UIFunction {
         trans.offsetMin = trans.offsetMin - new Vector2(deltaSize.x * trans.pivot.x, deltaSize.y * trans.pivot.y);
         trans.offsetMax = trans.offsetMax + new Vector2(deltaSize.x * (1f - trans.pivot.x), deltaSize.y * (1f - trans.pivot.y));
 	}
+	/* 设置物体的二维坐标
+	   param[go]:需要改变的物体
+	   param[newPosition]:新的二维坐标
+	 */
 	public static void SetPosition(ref GameObject go, Vector2 newPosition) {
 		Rect rect = go.GetComponent<RectTransform>().rect;
 		rect.x = newPosition.x;
 		rect.y = newPosition.y;
 	}
-
+	/* 设置物体的三维坐标
+	   param[go]:需要改变的物体
+	   param[newPosition]:新的三维坐标
+	 */
 	public static void Set3DPosition(ref GameObject go, Vector3 newPosition){
 		go.transform.localPosition = newPosition;
 	}
-
+	public static void Set3DPosition(GameObject go, Vector3 newPosition){
+		Set3DPosition(ref go, newPosition);
+	}
+	/* 设置物体在地图上的位置
+	   param[go]:需要改变的物体
+	   param[gp]:地图的位置
+	 */
+	public static void SetMapPosition(GameObject go, GPosition gp) {
+		Vector3 newPosition = new Vector3();
+		newPosition.z = -8.5f;
+		//halfHeight + j * height, - (halfWidth + i * width)
+		newPosition.x = LocalMessage.grid.height / 2 + gp.x * LocalMessage.grid.height;
+		newPosition.y = LocalMessage.grid.width / 2 + gp.y * LocalMessage.grid.width;
+		Set3DPosition(ref go, newPosition);
+	}
+	/* 设置物体大小倍率
+	   param[go]:需要改变的物体
+	   param[newScale]:新的大小倍率
+	 */
 	public static void SetScale(ref GameObject go, ref Vector3 newScale){
 		go.transform.localScale = newScale;
+	}
+	public static void SetScale(GameObject go, Vector3 newScale){
+		SetScale(ref go, ref newScale);
+	}
+	//清空子组件
+	public static void ClearChild(ref GameObject go) {
+		Transform temp = go.transform;
+		int num = temp.childCount;
+		for(int i = 0; i < num; i++)
+			MonoBehaviour.Destroy(temp.GetChild(0).gameObject);
+		LocalMessage.SetHandler(null);
 	}
 }
