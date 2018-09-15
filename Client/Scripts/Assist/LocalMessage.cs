@@ -7,8 +7,31 @@ public struct Grid {
 	public float height;
 }
 public struct GPosition {
-	public byte x;
-	public byte y;
+	public byte line;
+	public byte column;
+	public bool Equals(GPosition arg) {
+		return line == arg.line && column == arg.column;
+	}
+	public void CopyFrom(GPosition src) {
+		line = src.line;
+		column = src.column;
+	}
+	static public GPosition operator <<(GPosition arg, int num) {
+		if(num > 0) arg.line += (byte)num;
+		else arg.line -= (byte)num;
+		return arg;
+	}
+	static public GPosition operator >>(GPosition arg, int num) {
+		if(num > 0) arg.column += (byte)num;
+		else arg.column -= (byte)num;
+		return arg;
+	}
+	//判断两个位置是否相邻
+	public bool Adjacent(GPosition arg) {
+		int x = ~(line ^ arg.line);
+		int y = ~(column ^ arg.column);
+		return (x == 1 && y == 0) || (x == 0 && y == 1);
+	}
 }
 public class LocalMessage {
 	private static SocketCom.MessageHandler handler = null;
@@ -42,10 +65,10 @@ public class LocalMessage {
 	*/
 	public static void SetMap(byte[] arg, int grid_bit = 2){
 		ushort lineNumber = arg[4], columnNumber = arg[5];
-		StartGrid.x = arg[6];
-		StartGrid.y = arg[7];
-		EndGrid.x = arg[8];
-		EndGrid.y = arg[9];
+		StartGrid.line = arg[6];
+		StartGrid.column = arg[7];
+		EndGrid.line = arg[8];
+		EndGrid.column = arg[9];
 		Map = new byte[lineNumber][];
 		int line, column, currentBit = 0, currentByte = 10, tempShift = 0;
 		byte temp = arg[currentByte++];
