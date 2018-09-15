@@ -92,9 +92,6 @@ public class UIFunction {
 	public static void Set3DPosition(ref GameObject go, Vector3 newPosition){
 		go.transform.localPosition = newPosition;
 	}
-	public static void Set3DPosition(GameObject go, Vector3 newPosition){
-		Set3DPosition(ref go, newPosition);
-	}
 	/* 设置物体在地图上的位置
 	   param[go]:需要改变的物体
 	   param[gp]:地图的位置
@@ -102,10 +99,21 @@ public class UIFunction {
 	public static void SetMapPosition(GameObject go, GPosition gp) {
 		Vector3 newPosition = new Vector3();
 		newPosition.z = -8.5f;
-		//halfHeight + j * height, - (halfWidth + i * width)
-		newPosition.x = LocalMessage.grid.height / 2 + gp.x * LocalMessage.grid.height;
-		newPosition.y = LocalMessage.grid.width / 2 + gp.y * LocalMessage.grid.width;
-		Set3DPosition(ref go, newPosition);
+		newPosition.x = LocalMessage.grid.width / 2 + gp.column * LocalMessage.grid.width;
+		newPosition.y = - (LocalMessage.grid.height / 2 + gp.line * LocalMessage.grid.height);
+		go.transform.localPosition = newPosition;
+	}
+	/* 获取物体在地图上的位置
+	   param[go]:需要获取位置的物体
+	 */
+	public static GPosition GetMapPosition(GameObject go) {
+		Vector3 pos = go.transform.localPosition;
+		GPosition gp = new GPosition();
+		float tempCol = (pos.x - LocalMessage.grid.width / 2) / LocalMessage.grid.width;
+		float tempLin = (pos.y + LocalMessage.grid.height / 2) / ( - LocalMessage.grid.height);
+		gp.column = (byte)tempCol;
+		gp.line = (byte)tempLin;
+		return gp;
 	}
 	/* 设置物体大小倍率
 	   param[go]:需要改变的物体
@@ -115,7 +123,7 @@ public class UIFunction {
 		go.transform.localScale = newScale;
 	}
 	public static void SetScale(GameObject go, Vector3 newScale){
-		SetScale(ref go, ref newScale);
+		go.transform.localScale = newScale;
 	}
 	//清空子组件
 	public static void ClearChild(ref GameObject go) {
@@ -123,6 +131,5 @@ public class UIFunction {
 		int num = temp.childCount;
 		for(int i = 0; i < num; i++)
 			MonoBehaviour.Destroy(temp.GetChild(0).gameObject);
-		LocalMessage.SetHandler(null);
 	}
 }
