@@ -1,44 +1,15 @@
 ﻿using System.Threading;
 using System;
 using UnityEngine;
-//地图每一格
-public struct Grid {
-	public float width;
-	public float height;
-}
-public struct GPosition {
-	public byte line;
-	public byte column;
-	public bool Equals(GPosition arg) {
-		return line == arg.line && column == arg.column;
-	}
-	public void CopyFrom(GPosition src) {
-		line = src.line;
-		column = src.column;
-	}
-	static public GPosition operator <<(GPosition arg, int num) {
-		if(num > 0) arg.line += (byte)num;
-		else arg.line -= (byte)num;
-		return arg;
-	}
-	static public GPosition operator >>(GPosition arg, int num) {
-		if(num > 0) arg.column += (byte)num;
-		else arg.column -= (byte)num;
-		return arg;
-	}
-	//判断两个位置是否相邻
-	public bool Adjacent(GPosition arg) {
-		int x = ~(line ^ arg.line);
-		int y = ~(column ^ arg.column);
-		return (x == 1 && y == 0) || (x == 0 && y == 1);
-	}
-}
+using System.Collections;
+
 public class LocalMessage {
 	private static SocketCom.MessageHandler handler = null;
 	public static ulong LocalPlayerNumber = 0;//本机玩家编号
 	public static ushort LocalRoomNumber = 0;//本机所在房间号
 	public static byte LocalIdentity = 1;//0房主，1普通玩家
 	public static byte[][] Map = null;//地图
+	public static ArrayList MonsterRoute = null;
 	public static Grid grid = new Grid();//地图每一格的大小
 	public static GPosition StartGrid = new GPosition();//地图的起点坐标（格子数坐标）
 	public static GPosition EndGrid = new GPosition();//地图的终点坐标（格子数坐标）
@@ -97,6 +68,50 @@ public class LocalMessage {
 				if(column == columnNumber) break;
 			}
 		}
+		SetMonsterRoute();
+	}
+	//设置怪物的路线
+	private static void SetMonsterRoute() {
+		byte currentDirection = GetNextGridDirection(StartGrid, MoveRoute.NONE);
+		MonsterRoute = new ArrayList();
+		GPosition currentPosition = new GPosition(), lastPosition = new GPosition(){
+				line = MoveRoute.NONE, column = MoveRoute.NONE
+			};
+		for(currentPosition.CopyFrom(StartGrid); true;) {
+			//判断lastPosition是在currentPosition的哪个方向
+			byte tempDirection = currentPosition.Adjacent(lastPosition);
+			if(currentDirection != tempDirection) {
+				currentDirection = tempDirection;
+				MonsterRoute.Add(new Position(currentPosition, UIFunction.GetPixelPosition(currentPosition), currentDirection));
+				if(currentPosition.Equals(EndGrid)) 
+					break;
+			}
+			lastPosition.CopyFrom(currentPosition);
+			currentDirection = GetNextGridDirection(currentPosition, currentDirection);
+			switch(currentDirection) {
+				case MoveRoute.UP: currentPosition.line -= 1;break;
+				case MoveRoute.DOWN: currentPosition.line += 1;break;
+				case MoveRoute.LEFT: currentPosition.column -= 1;break;
+				case MoveRoute.RIGHT: currentPosition.column += 1;break;
+			}
+		}
+	}
+	/* 获取下一格的方向
+	   param[currentPosition]:当前位置
+	   param[currentDirection]:当前方向
+	   return:下一格在当前格的方向
+	 */
+	public static byte GetNextGridDirection(GPosition currentPosition, byte currentDirection) {
+		byte result = MoveRoute.NONE;
+		if(currentDirection != MoveRoute.DOWN && currentPosition.line >= 1 && Map[currentPosition.line - 1][currentPosition.column] == 0)
+			result = MoveRoute.UP;
+		else if(currentDirection != MoveRoute.LEFT && currentPosition.column + 1 < Map[0].Length && Map[currentPosition.line][currentPosition.column + 1] == 0)
+			result = MoveRoute.RIGHT;
+		else if(currentDirection != MoveRoute.UP && currentPosition.line + 1 < Map.Length && Map[currentPosition.line + 1][currentPosition.column] == 0)
+			result = MoveRoute.DOWN;
+		else if(currentDirection != MoveRoute.RIGHT && currentPosition.column >= 1 && Map[currentPosition.line][currentPosition.column - 1] == 0)
+			result = MoveRoute.LEFT;
+		return result;
 	}
 	/* 获取一个数的低n位
 	   param[arg]:原数
