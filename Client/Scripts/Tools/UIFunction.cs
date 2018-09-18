@@ -92,7 +92,7 @@ public class UIFunction {
 	public static void Set3DPosition(ref GameObject go, Vector3 newPosition){
 		go.transform.localPosition = newPosition;
 	}
-	/* 设置物体在地图上的位置
+	/* 设置物体在地图上的像素位置
 	   param[go]:需要改变的物体
 	   param[gp]:地图的位置
 	 */
@@ -103,16 +103,27 @@ public class UIFunction {
 		newPosition.y = - (LocalMessage.grid.height / 2 + gp.line * LocalMessage.grid.height);
 		go.transform.localPosition = newPosition;
 	}
+	/* 获取指定地图位置的实际像素位置
+	   param[gp]:地图位置
+	   return:像素位置
+	 */
+	public static Vector2 GetPixelPosition(GPosition gp) {
+		Vector2 newPosition = new Vector2();
+		newPosition.x = LocalMessage.grid.width / 2 + gp.column * LocalMessage.grid.width;
+		newPosition.y = - (LocalMessage.grid.height / 2 + gp.line * LocalMessage.grid.height);
+		return newPosition;
+	}
 	/* 获取物体在地图上的位置
 	   param[go]:需要获取位置的物体
+	   param[delta]:偏差值
 	 */
-	public static GPosition GetMapPosition(GameObject go) {
+	public static GPosition GetMapPosition(GameObject go, float line_delta = 0, float column_delta = 0) {
 		Vector3 pos = go.transform.localPosition;
 		GPosition gp = new GPosition();
 		float tempCol = (pos.x - LocalMessage.grid.width / 2) / LocalMessage.grid.width;
 		float tempLin = (pos.y + LocalMessage.grid.height / 2) / ( - LocalMessage.grid.height);
-		gp.column = (byte)tempCol;
-		gp.line = (byte)tempLin;
+		gp.column = (byte)(tempCol + line_delta);
+		gp.line = (byte)(tempLin + column_delta);
 		return gp;
 	}
 	/* 设置物体大小倍率
