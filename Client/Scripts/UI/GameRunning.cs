@@ -7,8 +7,8 @@ public class GameRunning : MonoBehaviour {
 	public GameObject MapPanel;//地图区域
 
 	private readonly string[] Floor = {"Prefabs/ground", "Prefabs/glass", "Prefabs/stone"};
-	private const float MapWidth = 668;
-	private const float MapHeight = 668;
+	public const float MapWidth = 668;
+	public const float MapHeight = 668;
 	void Start() {
 	}
 	// Use this for initialization
