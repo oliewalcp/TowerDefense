@@ -36,9 +36,9 @@ public struct GPosition {
 				return MoveRoute.LEFT;
 		} else if(dst.column == src.column) {
 			if(dst.line == src.line + 1)
-				return MoveRoute.UP;
-			else if(dst.line == src.line - 1)
 				return MoveRoute.DOWN;
+			else if(dst.line == src.line - 1)
+				return MoveRoute.UP;
 		}
 		return MoveRoute.NONE;
 	}
@@ -52,7 +52,7 @@ public class Position {
 		x = 0,
 		y = 0
 	};//像素位置
-	private byte direction = MoveRoute.NONE;
+	private byte direction = MoveRoute.NONE;//当前格子的移动方向
 	public Position(){}
 	public Position(GPosition gpos, Vector2 ppos, byte dirc) {
 		SetGridPosition(gpos);
@@ -88,5 +88,8 @@ public class Position {
 	}
 	public float GetY() {
 		return pixel_pos.y;
+	}
+	public Vector2 GetPixel() {
+		return pixel_pos;
 	}
 }
