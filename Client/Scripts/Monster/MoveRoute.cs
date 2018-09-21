@@ -1,18 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class MoveRoute : MonoBehaviour {
 	public GameObject MapPanel;//地图区域
-	public static float MoveSpeed = 2.5f;//移动速度
+	public static float MoveSpeed = 100f;//移动速度
 	public const byte UP = 0;//上
 	public const byte LEFT = 1;//左
 	public const byte DOWN = 2;//下
 	public const byte RIGHT = 3;//右
 	public const byte NONE = 255;//不相邻
-	private byte currentDirection = NONE;//当前的方向
-	private ushort currentIndex = 0;//当前位置索引
-	private Position currentPosition;
+	public static Vector3 UP_D = new Vector3(180, 0, 0);
+	public static Vector3 DOWN_D = new Vector3(180, 0, 180);
+	public static Vector3 LEFT_D = new Vector3(180, 0, 270);
+	public static Vector3 RIGHT_D = new Vector3(180, 0, 90);
+	public static Vector3[] DIRECTION = {UP_D, LEFT_D, DOWN_D, RIGHT_D};
+	private uint currentIndex = 1;//当前位置索引
+	//private Position currentPosition;
 	static private Vector2 EndPoint = new Vector2() {
 		x = 0,
 		y = 0
@@ -25,6 +30,10 @@ public class MoveRoute : MonoBehaviour {
 		UIFunction.SetScale(gameObject, new Vector3(small, small, small));
 		UIFunction.SetMapPosition(gameObject, LocalMessage.StartGrid);
 		if(EndPoint.x == 0 && EndPoint.y == 0) EndPoint = UIFunction.GetPixelPosition(LocalMessage.EndGrid);
+		transform.localEulerAngles = new Vector3(180, 0, 0);
+		Turn(UP, LocalMessage.MonsterRoute[0].GetDirection());
+		Position p = LocalMessage.MonsterRoute[currentIndex];
+		iTween.moveTo(gameObject, (float)GetDistance(p.GetPixel(), UIFunction.GetPixelPosition(LocalMessage.StartGrid)) / MoveSpeed, 0, p.GetX(), p.GetY(), -8.5f, iTween.EasingType.linear, "CompleteMove", null);
 	}
 
 	void OnEnable() {
@@ -33,34 +42,47 @@ public class MoveRoute : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Translate(Vector3.down * MoveSpeed * Time.deltaTime);
-		if(currentIndex < LocalMessage.MonsterRoute.Count) {
-			currentPosition = LocalMessage.MonsterRoute[currentIndex] as Position;
-			byte dir = currentPosition.GetDirection();
-			if(dir != currentDirection) {
-				currentIndex++;
-				if(currentDirection == UP && dir == LEFT) transform.Rotate(0, 0, -90);
-				if(currentDirection == RIGHT && dir == UP) transform.Rotate(0, 0, -90);
-				if(currentDirection == DOWN && dir == RIGHT) transform.Rotate(0, 0, -90);
-				if(currentDirection == LEFT && dir == DOWN) transform.Rotate(0, 0, -90);
-				currentDirection = dir;
-			}
-		}
-		if(currentPosition.GetLine() == LocalMessage.EndGrid.line && currentPosition.GetColumn() == LocalMessage.EndGrid.column) {
-			switch(currentDirection) {
-				case UP:if(currentPosition.GetY() <= EndPoint.y) ArriveEndPoint();break;
-				case DOWN:if(currentPosition.GetY() >= EndPoint.y) ArriveEndPoint();break;
-				case LEFT:if(currentPosition.GetX() <= EndPoint.x) ArriveEndPoint();break;
-				case RIGHT:if(currentPosition.GetX() >= EndPoint.x) ArriveEndPoint();break;
-			}
+
+	}
+	private void Turn(byte now, byte next) {
+		if(now == UP) {
+			if(next == DOWN) transform.Rotate(0, 0, 180);
+			else if(next == LEFT) transform.Rotate(0, 0, -90);
+			else if(next == RIGHT) transform.Rotate(0, 0, 90);
+		} else if(now == DOWN) {
+			if(next == UP) transform.Rotate(0, 0, 180);
+			else if(next == LEFT) transform.Rotate(0, 0, 90);
+			else if(next == RIGHT) transform.Rotate(0, 0, -90);
+		} else if(now == LEFT) {
+			if(next == RIGHT) transform.Rotate(0, 0, 180);
+			else if(next == UP) transform.Rotate(0, 0, 90);
+			else if(next == DOWN) transform.Rotate(0, 0, -90);
+		} else if(now == RIGHT) {
+			if(next == UP) transform.Rotate(0, 0, -90);
+			else if(next == LEFT) transform.Rotate(0, 0, 180);
+			else if(next == DOWN) transform.Rotate(0, 0, 90);
 		}
 	}
 
+	private void CompleteMove() {
+		Position temp1 = LocalMessage.MonsterRoute[currentIndex];
+		if(temp1.GetLine() == LocalMessage.EndGrid.line && temp1.GetColumn() == LocalMessage.EndGrid.column) {
+			ArriveEndPoint();
+			return;
+		}
+		Position temp2 = LocalMessage.MonsterRoute[++currentIndex];
+		transform.localEulerAngles = DIRECTION[temp1.GetDirection()];
+		iTween.moveTo(gameObject, (float)GetDistance(temp1.GetPixel(), temp2.GetPixel()) / MoveSpeed, 0, temp2.GetX(), temp2.GetY(), -8.5f, iTween.EasingType.linear, "CompleteMove", null);
+	}
 	void OnDisable() {
 		Destroy(gameObject);
 	}
 	
 	private void ArriveEndPoint() {
 		Destroy(gameObject);
+	}
+
+	private double GetDistance(Vector2 v1, Vector2 v2) {
+		return Math.Sqrt(Math.Pow(v1.x - v2.x, 2) + Math.Pow(v1.y - v2.y, 2));
 	}
 }
