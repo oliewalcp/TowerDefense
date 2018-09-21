@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System;
 using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class LocalMessage {
 	private static SocketCom.MessageHandler handler = null;
@@ -9,7 +9,7 @@ public class LocalMessage {
 	public static ushort LocalRoomNumber = 0;//本机所在房间号
 	public static byte LocalIdentity = 1;//0房主，1普通玩家
 	public static byte[][] Map = null;//地图
-	public static ArrayList MonsterRoute = null;
+	public static Dictionary<uint, Position> MonsterRoute = new Dictionary<uint, Position>();
 	public static Grid grid = new Grid();//地图每一格的大小
 	public static GPosition StartGrid = new GPosition();//地图的起点坐标（格子数坐标）
 	public static GPosition EndGrid = new GPosition();//地图的终点坐标（格子数坐标）
@@ -36,6 +36,8 @@ public class LocalMessage {
 	*/
 	public static void SetMap(byte[] arg, int grid_bit = 2){
 		ushort lineNumber = arg[4], columnNumber = arg[5];
+		grid.width = GameRunning.MapWidth / columnNumber;
+		grid.height = GameRunning.MapHeight / lineNumber;
 		StartGrid.line = arg[6];
 		StartGrid.column = arg[7];
 		EndGrid.line = arg[8];
@@ -69,24 +71,29 @@ public class LocalMessage {
 			}
 		}
 		SetMonsterRoute();
+		//Loom.RunAsync(SetMonsterRoute);
 	}
 	//设置怪物的路线
+	/* 将拐点添加到容器中
+	 */
 	private static void SetMonsterRoute() {
-		byte currentDirection = GetNextGridDirection(StartGrid, MoveRoute.NONE);
-		MonsterRoute = new ArrayList();
-		GPosition currentPosition = new GPosition(), lastPosition = new GPosition(){
-				line = MoveRoute.NONE, column = MoveRoute.NONE
-			};
-		for(currentPosition.CopyFrom(StartGrid); true;) {
-			//判断lastPosition是在currentPosition的哪个方向
-			byte tempDirection = currentPosition.Adjacent(lastPosition);
-			if(currentDirection != tempDirection) {
-				currentDirection = tempDirection;
-				MonsterRoute.Add(new Position(currentPosition, UIFunction.GetPixelPosition(currentPosition), currentDirection));
-				if(currentPosition.Equals(EndGrid)) 
-					break;
+		byte currentDirection = GetNextGridDirection(StartGrid, MoveRoute.NONE), lastDirection = MoveRoute.NONE;
+		GPosition currentPosition = new GPosition(), lastPosition = new GPosition();
+		uint i = 0, max = (uint)(Map.Length * Map[0].Length);
+		uint index = 0;
+		for(currentPosition.CopyFrom(StartGrid), lastPosition.CopyFrom(StartGrid); i < max; i++) {
+			//遇到拐点，则保存到容器中
+			if(currentDirection != lastDirection) {
+				lastDirection = currentDirection;
+				MonsterRoute.Add(index++, new Position(lastPosition, UIFunction.GetPixelPosition(lastPosition), currentDirection));
 			}
-			lastPosition.CopyFrom(currentPosition);
+			//如果达到终点，则结束
+			if(currentPosition.Equals(EndGrid)) {
+				MonsterRoute.Add(index++, new Position(currentPosition, UIFunction.GetPixelPosition(currentPosition), currentDirection));
+				break;
+			}
+			lastPosition.CopyFrom(currentPosition);//将当前位置保存到上一个位置
+			//获取下一个位置的方向，并避免180度回头的情况
 			currentDirection = GetNextGridDirection(currentPosition, currentDirection);
 			switch(currentDirection) {
 				case MoveRoute.UP: currentPosition.line -= 1;break;
