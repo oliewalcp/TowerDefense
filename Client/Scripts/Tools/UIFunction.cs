@@ -109,8 +109,8 @@ public class UIFunction {
 	 */
 	public static Vector2 GetPixelPosition(GPosition gp) {
 		Vector2 newPosition = new Vector2();
-		newPosition.x = LocalMessage.grid.width / 2 + gp.column * LocalMessage.grid.width;
-		newPosition.y = - (LocalMessage.grid.height / 2 + gp.line * LocalMessage.grid.height);
+		newPosition.x = LocalMessage.grid.width / 2 + (float)(gp.column) * LocalMessage.grid.width;
+		newPosition.y = - (LocalMessage.grid.height / 2 + (float)(gp.line) * LocalMessage.grid.height);
 		return newPosition;
 	}
 	/* 获取物体在地图上的位置

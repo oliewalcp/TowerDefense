@@ -112,9 +112,20 @@ class XMLFileController {
     }
     //关闭并保存
     public void Close() {
-        Document.Save(FileName);
+        if(Document != null)
+            Document.Save(FileName);
         Document = null;
         FileName = null;
         NodeList.Clear();
+    }
+    //获取当前结点的所有子节点
+    public LinkedList<string> GetChildren() {
+        LinkedList<string> result = new LinkedList<string>();
+        XmlElement currentNode = NodeList.Peek();
+        XmlNodeList child = currentNode.ChildNodes;
+        foreach(XmlNode c in child) {
+            result.AddLast(c.Name);
+        }
+        return result;
     }
 }
