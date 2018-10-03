@@ -1,19 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class FloorClick : MonoBehaviour, IPointerDownHandler {
-	static public string CurrentSelectTower = null;//当前选择的塔的名称
-	private string current_tower = null;//当前已建造的塔
-	public void OnPointerDown(PointerEventData eventData) {
-		string tower = CurrentSelectTower;
-		if(!Input.GetKeyDown(KeyCode.LeftShift) && !Input.GetKeyDown(KeyCode.RightShift)) {
-			CurrentSelectTower = null;
-		}
-		if(current_tower != null) return;
-		else SendMessage("SetTower", tower);
+public class FloorClick : MonoBehaviour {
+
+	private string current_tower = null;
+
+	private void BuildTower(string tower) {
+		if(tower == "" || current_tower != null) return;
+		tower = tower.Replace("(Clone)", "");
+		float small = LocalMessage.grid.width > LocalMessage.grid.height ? LocalMessage.grid.height : LocalMessage.grid.width;
+		Vector3 scale = new Vector3(small, small, small);
+
 		GameObject go = (GameObject)Instantiate(Resources.Load("Prefabs/Tower/" + tower));
-		Debug.Log("click");
+		go.transform.parent = transform;
+		UIFunction.SetScale(ref go, ref scale);
+		go.transform.localEulerAngles = new Vector3(0, 0, 0);
+		UIFunction.Set3DPosition(ref go, new Vector3(0, 0, -7));
+
+		current_tower = tower;
 	}
 }
