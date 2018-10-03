@@ -6,10 +6,11 @@ using System.Xml;
 using System.Collections;
 using System.IO;
 
-class XMLFileController {
+public class XMLFileController {
     private XmlDocument Document = null;
     private Stack<XmlElement> NodeList = new Stack<XmlElement>();
     private string FileName = null;
+    public bool IsOpen {get; private set;}
 
     /* 打开文件
        param[FileName]：文件名
@@ -17,6 +18,7 @@ class XMLFileController {
     public void Open(string FileName) {
         Document = new XmlDocument();
         this.FileName = FileName;
+        NodeList.Clear();
         if(File.Exists(FileName)) {
             Document.Load(FileName);
             XmlElement root = Document.DocumentElement;
@@ -28,6 +30,7 @@ class XMLFileController {
             Document.AppendChild(root);
             NodeList.Push(root);
         }
+        IsOpen = true;
     }
     /* 进入一个父结点
        param[NodeName]：结点名称
