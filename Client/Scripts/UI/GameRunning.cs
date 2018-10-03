@@ -15,13 +15,15 @@ public class GameRunning : MonoBehaviour {
 	public Text KillNumber_Text;//杀敌数
 	public Text HPNumber_Text;//剩余生命值
 
-	private readonly string[] Floor = {"Prefabs/ground", "Prefabs/glass", "Prefabs/stone"};
-	private const string check_point_data = "Data/CheckPoints.xml";
+	private readonly string[] Floor = {"Prefabs/ground", "Prefabs/glass", "Prefabs/stone", "Prefabs/begin", "Prefabs/end"};
+	public const string check_point_data = "Data/CheckPoints.xml";
+	public const string tower_data = "Data/Towers.xml";
 	private readonly string[] Armor = {"", "none", "leather", "wood", "iron", "steel", "diamond", "magic"};
 	public const float MapWidth = 668;
 	public const float MapHeight = 668;
 	private static int current_check_point = 1;//当前关卡数
 	private XMLFileController xml = new XMLFileController();
+	public static XMLFileController TowerFileXml = new XMLFileController();
 	private Coroutine CreateMonsterThread = null;
 
 	private const string READY_TIME = "ready_time";
@@ -40,6 +42,7 @@ public class GameRunning : MonoBehaviour {
 	private const string BOSS_BONUS = "boss_bonus";
 
 	void Start() {
+		TowerFileXml.Open(tower_data);
 	}
 	// Use this for initialization
 	void OnEnable () {
@@ -79,8 +82,15 @@ public class GameRunning : MonoBehaviour {
 		Vector3 scale = new Vector3(width, height, 0.01f);
 		for(int i = 0; i < line; i++){
 			for(int j = 0; j < column; j++){
-				GameObject go = (GameObject)Instantiate(Resources.Load(Floor[LocalMessage.Map[i][j]]));
+				string temp = Floor[LocalMessage.Map[i][j]];
+				if(i == LocalMessage.StartGrid.line && j == LocalMessage.StartGrid.column)
+					temp = Floor[3];
+				else if(i == LocalMessage.EndGrid.line && j == LocalMessage.EndGrid.column)
+					temp = Floor[4];
+				GameObject go = (GameObject)Instantiate(Resources.Load(temp));
+				go.transform.localEulerAngles = new Vector3(0, 0, 180);
 				go.transform.SetParent(MapPanel.transform);
+				go.name = go.name.Replace("(Clone)", "");
 				UIFunction.SetScale(ref go, ref scale);
 				UIFunction.Set3DPosition(ref go, new Vector3(halfHeight + j * height, - (halfWidth + i * width), -0.09f));
 			}
@@ -91,12 +101,12 @@ public class GameRunning : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//BroadcastMessage("SetMoveSpeed", 200f, SendMessageOptions.DontRequireReceiver);
-		//GameObject.Find("Boss1").SendMessage("SetMoveSpeed", 120f);
+		
 	}
 
 	void OnDisable(){
 		xml.Close();
+		TowerFileXml.Close();
 		UIFunction.ClearChild(ref MapPanel);
 		LocalMessage.SetHandler(null);
 	}
