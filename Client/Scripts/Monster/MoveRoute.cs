@@ -6,6 +6,7 @@ using System;
 public class MoveRoute : MonoBehaviour {
 	private GameObject GameRootPanel;
 	private float MoveSpeed = 100f;//移动速度
+	private float OriginSpeed;
 	public const byte UP = 0;//上
 	public const byte LEFT = 1;//左
 	public const byte DOWN = 2;//下
@@ -16,7 +17,8 @@ public class MoveRoute : MonoBehaviour {
 	public static Vector3 LEFT_D = new Vector3(180, 0, 270);
 	public static Vector3 RIGHT_D = new Vector3(180, 0, 90);
 	public static Vector3[] DIRECTION = {UP_D, LEFT_D, DOWN_D, RIGHT_D};
-	private uint currentIndex = 1;//当前位置索引
+	private uint currentIndex = 1;//下一个位置索引
+	private bool StartMove = true;
 	static private Vector2 EndPoint = new Vector2() {
 		x = 0,
 		y = 0
@@ -28,8 +30,9 @@ public class MoveRoute : MonoBehaviour {
 		UIFunction.SetMapPosition(gameObject, LocalMessage.StartGrid);
 		if(EndPoint.x == 0 && EndPoint.y == 0) EndPoint = UIFunction.GetPixelPosition(LocalMessage.EndGrid);
 		transform.localEulerAngles = DIRECTION[LocalMessage.MonsterRoute[0].GetDirection()];
-		Position p = LocalMessage.MonsterRoute[currentIndex];
-		iTween.moveTo(gameObject, (float)GetDistance(p.GetPixel(), UIFunction.GetPixelPosition(LocalMessage.StartGrid)) / MoveSpeed, 0, p.GetX(), p.GetY(), -8.5f, iTween.EasingType.linear, "CompleteMove", null);
+		// MoveSpeed *= GameRunning.EnlargRatio;
+		// Position p = LocalMessage.MonsterRoute[currentIndex];
+		// iTween.moveTo(gameObject, (float)GetDistance(p.GetPixel(), UIFunction.GetPixelPosition(LocalMessage.StartGrid)) / MoveSpeed, 0, p.GetX(), p.GetY(), -8.5f, iTween.EasingType.linear, "CompleteMove", null);
 	}
 
 	void OnEnable() {
@@ -67,5 +70,15 @@ public class MoveRoute : MonoBehaviour {
 
 	public void SetMoveSpeed(float speed) {
 		MoveSpeed = speed;
+		Position temp1 = new Position();
+		if(StartMove) {
+			OriginSpeed = speed;
+			temp1.SetPixelPosition(UIFunction.GetPixelPosition(LocalMessage.StartGrid));
+			StartMove = false;
+		} else {
+			temp1.SetPixelPosition(UIFunction.GetPixelPosition(UIFunction.GetMapPosition(gameObject)));
+		}
+		Position temp2 = LocalMessage.MonsterRoute[currentIndex];
+		iTween.moveTo(gameObject, (float)GetDistance(temp1.GetPixel(), temp2.GetPixel()) / MoveSpeed, 0, temp2.GetX(), temp2.GetY(), -8.5f, iTween.EasingType.linear, "CompleteMove", null);
 	}
 }

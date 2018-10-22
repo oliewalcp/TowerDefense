@@ -2,8 +2,10 @@
 using System.Net;
 using System.Text;
 using System.Threading;
-public class SocketCom {
-    private static Mutex SocketMutex = new Mutex();
+using System.Collections;
+using UnityEngine;
+public class SocketCom : MonoBehaviour {
+    private static Mutex SocketMutex = new Mutex();//通信锁
     private const byte Version = 0;//通信版本号
     private const int Port = 33333;//端口号
     private const string ServerIP = "47.106.72.134";//服务器IP地址
@@ -31,6 +33,7 @@ public class SocketCom {
     //接收消息循环
     public void ReceiveMessageLoop(MessageHandler handler) {
         this.handler = handler;
+        StartCoroutine(SendHeartBeat());
         while(!StopLoop) {
             byte[] msg = new byte[1024];
             SocketMutex.WaitOne();
@@ -39,6 +42,14 @@ public class SocketCom {
             if(msg[0] != Version) continue;
             if(this.handler != null)
                 this.handler(msg);
+        }
+    }
+    //发送心跳包
+    private IEnumerator SendHeartBeat() {
+        while(true) {
+            SendMessage(MsgType.HeartBeat, "");
+            yield return new WaitForSeconds(60f);
+            if(StopLoop) yield break;
         }
     }
 

@@ -36,8 +36,8 @@ public class LocalMessage {
 	*/
 	public static void SetMap(byte[] arg, int grid_bit = 2){
 		ushort lineNumber = arg[4], columnNumber = arg[5];
-		grid.width = GameRunning.MapWidth / columnNumber;
-		grid.height = GameRunning.MapHeight / lineNumber;
+		grid.width = GameRunning.BaseLength / columnNumber;
+		grid.height = GameRunning.BaseLength / lineNumber;
 		StartGrid.line = arg[6];
 		StartGrid.column = arg[7];
 		EndGrid.line = arg[8];

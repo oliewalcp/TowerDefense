@@ -11,5 +11,11 @@ public class MsgType {
 	public const byte ChangeRoomMsg = 55;//修改房间信息
 	public const byte ChangeMapMsg = 56;//修改地图信息
 	public const byte AttackSignal = 104;//攻击事件
+	public const byte HeartBeat = 254;//心跳包
 	public const byte Synchronous = 255;//同步
+}
+
+public struct Function {
+	public string function_name;
+	public object param;
 }

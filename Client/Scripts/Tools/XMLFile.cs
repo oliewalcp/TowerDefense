@@ -46,6 +46,14 @@ public class XMLFileController {
             NodeList.Push(node);
         }
     }
+    /* 判断当前结点是否存在指定名称的结点
+       param[NodeName]：结点名称
+     */
+    public bool HasNode(string NodeName) {
+        XmlElement currentNode = NodeList.Peek();
+        XmlNodeList child = currentNode.GetElementsByTagName(NodeName);
+        return child.Count > 0;
+    }
     // 结束父结点
     public void EndParentNode() {
         if(NodeList.Count > 1)

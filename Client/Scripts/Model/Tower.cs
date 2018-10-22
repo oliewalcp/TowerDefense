@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+//效果编号
 public enum Features {
 	multitarget = 1, //同时攻击的目标数量
 	range_attack = 2, //是否是范围攻击
@@ -12,7 +13,7 @@ public enum Features {
 	attack_damageup = 512 //己方塔增加的攻击力（百分数）
 }
 public class SpecialEffect {
-	public int features{get; set;}//所包含的特性
+	public int features{get; set;}//所包含的特性编号
 	public long time{get; set;}//持续时间（-1表示永久有效）
 	public double number{get; set;}//特性对应的数值
 	public SpecialEffect(int features = 0, long time = 0, double number = 0){
@@ -26,10 +27,10 @@ public class SpecialEffect {
 	public static bool operator !=(SpecialEffect se1, SpecialEffect s2){
 		return se1.features != s2.features;
 	}
-	public static bool operator ==(SpecialEffect se, long arg){
+	public static bool operator ==(SpecialEffect se, int arg){
 		return se.features == arg;
 	}
-	public static bool operator !=(SpecialEffect se, long arg){
+	public static bool operator !=(SpecialEffect se, int arg){
 		return se.features != arg;
 	}
 	public override bool Equals(object o){
@@ -42,6 +43,8 @@ public class SpecialEffect {
 //塔
 public class Tower {
 	public string name{get; set;} //塔的名称
+	public int build_gold{get; set;}//建造所需的金币
+	public string detail{get; set;}//塔的描述
 	public double damage{get; set;} //攻击力
 	public int attack_type{get; set;} //攻击类型
 	public double crit_rate{get; set;} //暴击率
@@ -50,11 +53,14 @@ public class Tower {
 	public long attack_interval{get; set;} //攻击间隔时间（毫秒）
 	public int domain_width{get; set;} //占用宽度的格子数
 	public int domain_height{get; set;} //占用高度的格子数
-	private LinkedList<SpecialEffect> features = new LinkedList<SpecialEffect>();
-	public Tower(string name, double damage = 0, double crit_rate = 0, double crit_damage = 0, 
+	public SpecialEffect features = null;//塔本身具备的特性
+	public Tower(string name, string detail = "", int build_gold = 0, double damage = 0, int attack_type = 0, double crit_rate = 0, double crit_damage = 0, 
 		int attack_range = 0, long attack_interval = 0, int domain_width = 1, int domain_height = 1){
 		this.name = name;
+		this.build_gold = build_gold;
+		this.detail = detail;
 		this.damage = damage;
+		this.attack_type = attack_type;
 		this.crit_rate = crit_rate;
 		this.crit_damage = crit_damage;
 		this.attack_range = attack_range;
@@ -62,12 +68,18 @@ public class Tower {
 		this.domain_width = domain_width;
 		this.domain_height = domain_height;
 	}
-	public void AddFeatures(int f, long time, double number){
-		SpecialEffect se = new SpecialEffect(f, time, number);
-		features.AddLast(se);
+	/* 为塔添加额外的攻击效果
+	   param[f]:效果
+	   param[time]:效果持续时间
+	   param[number]:效果对应的值
+	 */
+	public void SetFeatures(int f, long time, double number){
+		features = new SpecialEffect(f, time, number);
 	}
-	public void RemoveFeatures(int f){
-		var node = features.Find(new SpecialEffect(f));
-		features.Remove(node);
+	/* 为塔移除攻击效果
+	   param[f]:效果
+	 */
+	public void ClearFeatures(int f){
+		features = null;
 	}
 }
