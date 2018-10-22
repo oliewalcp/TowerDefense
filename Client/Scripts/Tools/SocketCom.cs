@@ -8,7 +8,7 @@ public class SocketCom : MonoBehaviour {
     private static Mutex SocketMutex = new Mutex();//通信锁
     private const byte Version = 0;//通信版本号
     private const int Port = 33333;//端口号
-    private const string ServerIP = "47.106.72.134";//服务器IP地址
+    private const string ServerIP = "0.0.0.0";//服务器IP地址
     private IPEndPoint ServerPoint = new IPEndPoint(IPAddress.Parse(ServerIP), Port);//服务端
 
     public delegate void MessageHandler(byte[] message);
