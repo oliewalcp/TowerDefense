@@ -20,10 +20,12 @@ public class GameRunning : MonoBehaviour {
 	public const string check_point_data = "Data/CheckPoints.xml";
 	public const string tower_data = "Data/Towers.xml";
 	private readonly string[] Armor = {"", "none", "leather", "wood", "iron", "steel", "diamond", "magic"};
-	public static float MapWidth = Screen.width * 668.0f / 1024.0f;
-	public static float MapHeight = Screen.height * 668.0f / 768.0f;
+	public static float MapWidth = ((float)Screen.width * (668.0f / 1024.0f));
+	public static float MapHeight = ((float)Screen.height * (668.0f / 768.0f));
 	public static float BaseLength = MapWidth > MapHeight ? MapHeight : MapWidth;
 	public static float EnlargRatio = BaseLength / 668.0f;
+	private static float max = MapWidth > MapHeight ? MapWidth : MapHeight;
+	public static float y_offset = (max - MapWidth) / 2, x_offset = (max - MapHeight) / 2;
 	private static int current_check_point = 1;//当前关卡数
 	private XMLFileController xml = new XMLFileController();
 	public static XMLFileController TowerFileXml = new XMLFileController();
@@ -49,6 +51,13 @@ public class GameRunning : MonoBehaviour {
 	}
 	// Use this for initialization
 	void OnEnable () {
+		MapWidth = (float)Screen.width * (668.0f / 1024.0f);
+		MapHeight = (float)Screen.height * (668.0f / 768.0f);
+		BaseLength = MapWidth > MapHeight ? MapHeight : MapWidth;
+		max = MapWidth > MapHeight ? MapWidth : MapHeight;
+		y_offset = (max - MapWidth) / 2;
+		x_offset = (max - MapHeight) / 2;
+		EnlargRatio = BaseLength / 668.0f;
 		byte[] testMap = new byte[]{0, 0, 0, 0, 20, 20, 
 								3, 0, 1, 18,//地图路线的起点和终点
 								//地图开始
@@ -79,7 +88,12 @@ public class GameRunning : MonoBehaviour {
 		CreateMonsterThread = StartCoroutine(AttackOnMonster());
 	}
 	//加载地图
-	private void LoadMap(){
+	private void LoadMap(){	
+		// //设置地图区域的位置
+		UIFunction.SetPosition(ref MapPanel, new Vector2(0, 0));
+		//设置地图区域的大小
+		UIFunction.SetSize(ref MapPanel, new Vector2(BaseLength, BaseLength));
+
 		int line = LocalMessage.Map.Length, column = LocalMessage.Map[0].Length;
 		float width = BaseLength / column, height = BaseLength / line, halfWidth = width / 2, halfHeight = height / 2;
 		Vector3 scale = new Vector3(width, height, 0.01f);
@@ -95,7 +109,7 @@ public class GameRunning : MonoBehaviour {
 				go.transform.SetParent(MapPanel.transform);
 				go.name = go.name.Replace("(Clone)", "");
 				UIFunction.SetScale(ref go, ref scale);
-				UIFunction.Set3DPosition(ref go, new Vector3(halfHeight + j * height, - (halfWidth + i * width), -0.09f));
+				UIFunction.Set3DPosition(ref go, new Vector3(halfHeight + j * height + x_offset, - (halfWidth + i * width) + y_offset, -0.09f));
 			}
 		}
 		LocalMessage.grid.width = width;
@@ -148,8 +162,8 @@ public class GameRunning : MonoBehaviour {
 			MonsterProperty temp_mp = new MonsterProperty().ParseArmorType(xml.GetValue(DEFENSE_TYPE))
 				.ParseBonus(xml.GetValue(BONUS)).ParseDefensePoint(xml.GetValue(DEFENSE_POINT))
 				.ParseHipPoint(xml.GetValue(HIT_POINT)).ParseSpeed(xml.GetValue(MOVE_SPEED));
-			MonsterInfoPanel.SendMessage("SetMonsterProperties", temp_mp);
-			MonsterInfoPanel.SendMessage("SetNextArmorType", new_type);
+			MonsterInfoPanel.SendMessage("SetMonsterProperties", temp_mp);//MonsterInfo.cs
+			MonsterInfoPanel.SendMessage("SetNextArmorType", new_type);//MonsterInfo.cs
 			float interval_time = float.Parse(xml.GetValue(INTERVAL_TIME)) / 1000;
 			for(;amount > 0; amount--) {
 				CreateMonster("Monster/" + defense_type, temp_mp, scale);
@@ -171,8 +185,8 @@ public class GameRunning : MonoBehaviour {
 		go.transform.SetParent(MapPanel.transform);
 		UIFunction.SetScale(ref go, ref scale);
 		go.SetActive(true);
-		go.SendMessage("SetMessageReceiver", gameObject);
-		go.SendMessage("LoadCurrentCheckPointMessage", message);
+		go.SendMessage("SetMessageReceiver", gameObject);//MoveRoute.cs
+		go.SendMessage("LoadCurrentCheckPointMessage", message);//MonsterProperties.cs
 	}
 	/* 跑掉一个怪物，减少生命值
 	   param[num]:减少的生命值数
