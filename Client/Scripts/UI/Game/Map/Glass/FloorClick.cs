@@ -5,9 +5,23 @@ using UnityEngine;
 public class FloorClick : MonoBehaviour {
 
 	private string current_tower = null;
+	public GameObject TowerListScroll;
+	public GameObject TowerMsgPanel;
+
+	void Start() {
+		TowerListScroll = GameObject.FindGameObjectWithTag("TowerList");
+		GameObject temp = GameObject.Find("Info");
+		TowerMsgPanel = temp.transform.Find("TowerMsg").gameObject;
+	}
 
 	private void BuildTower(string tower) {
-		if(tower == "" || current_tower != null) return;
+		if(current_tower != null) {
+			TowerListScroll.SetActive(false);
+			TowerMsgPanel.SetActive(true);
+			TowerMsgPanel.SendMessage("SetDisplayValue", current_tower);//CheckTowerMsg.cs
+			return;
+		}
+		if(tower == "") return;
 		tower = tower.Replace("(Clone)", "");
 		float small = LocalMessage.grid.width > LocalMessage.grid.height ? LocalMessage.grid.height : LocalMessage.grid.width;
 		small /= GameRunning.EnlargRatio;
