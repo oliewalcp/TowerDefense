@@ -28,6 +28,7 @@ public class MonsterProperties : MonoBehaviour {
 	private MonsterProperty origin;//原数值
 	public Camera UICamera;
 	private GameObject BloodBar;
+	delegate IEnumerator Timer(double value, long time);
 	private Dictionary<int, FeaturePackage> already_exists_features = new Dictionary<int, FeaturePackage>();//效果——效果值
 	void Start() {
 		UICamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -43,13 +44,14 @@ public class MonsterProperties : MonoBehaviour {
 	   param[check_point]:当前关卡数
 	 */
 	private void LoadCurrentCheckPointMessage(MonsterProperty mp) {
+		mp.speed *= GameRunning.EnlargRatio;
 		current = mp;
 		origin = mp;
 		SetSpeed();
 	}
 
 	private void SetSpeed() {
-		SendMessage("SetMoveSpeed", current.speed * GameRunning.EnlargRatio);
+		SendMessage("SetMoveSpeed", current.speed);//MoveRoute.cs
 	}
 	/* 当前物体受到攻击时，调用此函数
 	   param[damage]:攻击力
@@ -142,25 +144,20 @@ public class MonsterProperties : MonoBehaviour {
 		if(fm.create) {
 			//减速效果
 			if((fm.features & (int)Features.speeddown) > 0) {
+				fm.value *= GameRunning.EnlargRatio;
 				FeaturePackage fp;
 				if(already_exists_features.ContainsKey(fm.features)) {
 					fp = already_exists_features[fm.features];
 					if(((fp.value < 1 && fm.value < 1) || (fp.value >= 1 && fm.value >= 1)) 
 						&& fp.value < fm.value) {
-						fp.value = fm.value;
-						StopCoroutine(fp.coroutine);
-						fp.coroutine = StartCoroutine(DecelerateFeaturesTimer(fm.value, fm.time));
+						StartTimer(fp, fm, DecelerateFeaturesTimer);
 					} else if(fp.value < 1 && fm.value >= 1) {
 						if(fp.value * origin.speed < fm.value) {
-							fp.value = fm.value;
-							StopCoroutine(fp.coroutine);
-							fp.coroutine = StartCoroutine(DecelerateFeaturesTimer(fm.value, fm.time));
+							StartTimer(fp, fm, DecelerateFeaturesTimer);
 						}
 					} else if(fp.value >= 1 && fm.value < 1) {
 						if(fp.value < fm.value * origin.speed) {
-							fp.value = fm.value;
-							StopCoroutine(fp.coroutine);
-							fp.coroutine = StartCoroutine(DecelerateFeaturesTimer(fm.value, fm.time));
+							StartTimer(fp, fm, DecelerateFeaturesTimer);
 						}
 					}
 				} else {
@@ -177,20 +174,14 @@ public class MonsterProperties : MonoBehaviour {
 					fp = already_exists_features[fm.features];
 					if(((fp.value < 1 && fm.value < 1) || (fp.value >= 1 && fm.value >= 1)) 
 						&& fp.value < fm.value) {
-						fp.value = fm.value;
-						StopCoroutine(fp.coroutine);
-						fp.coroutine = StartCoroutine(DisruptingFeaturesTimer(fm.value, fm.time));
+						StartTimer(fp, fm, DisruptingFeaturesTimer);
 					} else if(fp.value < 1 && fm.value >= 1) {
 						if(fp.value * origin.speed < fm.value) {
-							fp.value = fm.value;
-							StopCoroutine(fp.coroutine);
-							fp.coroutine = StartCoroutine(DisruptingFeaturesTimer(fm.value, fm.time));
+							StartTimer(fp, fm, DisruptingFeaturesTimer);
 						}
 					} else if(fp.value >= 1 && fm.value < 1) {
 						if(fp.value < fm.value * origin.speed) {
-							fp.value = fm.value;
-							StopCoroutine(fp.coroutine);
-							fp.coroutine = StartCoroutine(DisruptingFeaturesTimer(fm.value, fm.time));
+							StartTimer(fp, fm, DisruptingFeaturesTimer);
 						}
 					}
 				} else {
@@ -207,10 +198,16 @@ public class MonsterProperties : MonoBehaviour {
 			FeaturePackage fp = already_exists_features[fm.features];
 			if((fm.features & (int)Features.speeddown) > 0) {
 				current.speed = origin.speed;
-				SendMessage("SetMoveSpeed", origin.speed);
+				SendMessage("SetMoveSpeed", origin.speed);//MoveRoute.cs
 			}
 			already_exists_features.Remove(fm.features);
 		}
+	}
+	private void StartTimer(FeaturePackage fp, FeatureMessage fm, Timer t) {
+		fp.value = fm.value;
+		if(fp.coroutine != null)
+			StopCoroutine(fp.coroutine);
+		fp.coroutine = StartCoroutine(t(fm.value, fm.time));
 	}
 	//设置当前血量
 	private void SetCurrentHipPoint(double hp) {
@@ -289,7 +286,7 @@ public class MonsterProperties : MonoBehaviour {
 		if(value > 1) current.speed = origin.speed - (float)value;
 		else current.speed = origin.speed * (float)(1 -  value);
 		Loom.QueueOnMainThread(() => {
-			SendMessage("SetMoveSpeed", current.speed);
+			SendMessage("SetMoveSpeed", current.speed);//MoveRoute.cs
 		});
 		if(time <= 0) yield break;
 		while(time > 0) {
@@ -299,7 +296,7 @@ public class MonsterProperties : MonoBehaviour {
 		}
 		current.speed = origin.speed;
 		Loom.QueueOnMainThread(() => {
-			SendMessage("SetMoveSpeed", current.speed);
+			SendMessage("SetMoveSpeed", current.speed);//MoveRoute.cs
 		});
 	}
 	/* 破防效果的计时器
@@ -308,7 +305,7 @@ public class MonsterProperties : MonoBehaviour {
 	 */
 	private IEnumerator DisruptingFeaturesTimer(double value, long time) {
 		if(value > 1) current.defense_point = origin.defense_point - (long)value;
-		else current.defense_point = origin.defense_point * (long)(1 - value);
+		else current.defense_point = origin.defense_point * (float)(1 - value);
 		if(time <= 0) yield break;
 		while(time > 0) {
 			if(time < 1) yield return new WaitForSeconds(time / 1000);
