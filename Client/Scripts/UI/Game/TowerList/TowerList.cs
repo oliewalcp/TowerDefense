@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TowerList : MonoBehaviour {
 
-	private const string TowerPicturePath = "Prefabs/LittleTower/";
-	private const string Template = "Prefabs/LittleTower/Template";
+	private const string TowerPicturePath = "Prefabs/TowerListPictures/";
+	private const string Template = "Prefabs/TowerListPictures/Template";
 
 	// Use this for initialization
 	void Start () {
@@ -21,7 +21,7 @@ public class TowerList : MonoBehaviour {
 				Vector3 temp = parent.transform.localPosition;
 				temp.z = 0;
 				parent.transform.SetParent(transform);
-				parent.SendMessage("AddImage", go);
+				parent.SendMessage("AddImage", go);//SelectTower.cs
 				parent.transform.localPosition = temp;
 				UIFunction.SetScale(ref parent, ref one);
 			} catch {

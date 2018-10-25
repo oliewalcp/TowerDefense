@@ -15,7 +15,7 @@ public class SelectTower : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
 
 	public void OnPointerDown(PointerEventData eventData) {
 		if(MapContent.ClickedTower != null) {
-			MapContent.ClickedTower.SendMessage("OnPointerClick");
+			MapContent.ClickedTower.SendMessage("OnPointerClick");//SelectTower.cs
 		}
 		MapContent.CurrentSelectTower = child.name;
 		MapContent.ClickedTower = gameObject;
