@@ -6,7 +6,6 @@ using System;
 public class MoveRoute : MonoBehaviour {
 	private GameObject GameRootPanel;
 	private float MoveSpeed = 100f;//移动速度
-	private float OriginSpeed;
 	public const byte UP = 0;//上
 	public const byte LEFT = 1;//左
 	public const byte DOWN = 2;//下
@@ -30,18 +29,6 @@ public class MoveRoute : MonoBehaviour {
 		UIFunction.SetMapPosition(gameObject, LocalMessage.StartGrid);
 		if(EndPoint.x == 0 && EndPoint.y == 0) EndPoint = UIFunction.GetPixelPosition(LocalMessage.EndGrid);
 		transform.localEulerAngles = DIRECTION[LocalMessage.MonsterRoute[0].GetDirection()];
-		// MoveSpeed *= GameRunning.EnlargRatio;
-		// Position p = LocalMessage.MonsterRoute[currentIndex];
-		// iTween.moveTo(gameObject, (float)GetDistance(p.GetPixel(), UIFunction.GetPixelPosition(LocalMessage.StartGrid)) / MoveSpeed, 0, p.GetX(), p.GetY(), -8.5f, iTween.EasingType.linear, "CompleteMove", null);
-	}
-
-	void OnEnable() {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
 	}
 
 	private void CompleteMove() {
@@ -52,33 +39,30 @@ public class MoveRoute : MonoBehaviour {
 		}
 		Position temp2 = LocalMessage.MonsterRoute[++currentIndex];
 		transform.localEulerAngles = DIRECTION[temp1.GetDirection()];
-		iTween.moveTo(gameObject, (float)GetDistance(temp1.GetPixel(), temp2.GetPixel()) / MoveSpeed, 0, temp2.GetX(), temp2.GetY(), -8.5f, iTween.EasingType.linear, "CompleteMove", null);
+		iTween.moveTo(gameObject, Vector3.Distance(temp1.GetPixel(), temp2.GetPixel()) / MoveSpeed, 0, temp2.GetX(), temp2.GetY(), -8.5f, iTween.EasingType.linear, "CompleteMove", null);
 	}
 	void OnDisable() {
 		Destroy(gameObject);
 	}
+	//GameRunning.cs调用
 	private void SetMessageReceiver(GameObject go) {
 		GameRootPanel = go;
 	}
 	private void ArriveEndPoint(int num = 1) {
-		GameRootPanel.SendMessage("EscapeMonster", num);
+		GameRootPanel.SendMessage("EscapeMonster", num);//GameRunning.cs
 		Destroy(gameObject);
 	}
-	private double GetDistance(Vector2 v1, Vector2 v2) {
-		return Math.Sqrt(Math.Pow(v1.x - v2.x, 2) + Math.Pow(v1.y - v2.y, 2));
-	}
-
+	//MonsterProperties.cs调用
 	public void SetMoveSpeed(float speed) {
 		MoveSpeed = speed;
 		Position temp1 = new Position();
 		if(StartMove) {
-			OriginSpeed = speed;
 			temp1.SetPixelPosition(UIFunction.GetPixelPosition(LocalMessage.StartGrid));
 			StartMove = false;
 		} else {
-			temp1.SetPixelPosition(UIFunction.GetPixelPosition(UIFunction.GetMapPosition(gameObject)));
+			temp1.SetPixelPosition(transform.localPosition);
 		}
 		Position temp2 = LocalMessage.MonsterRoute[currentIndex];
-		iTween.moveTo(gameObject, (float)GetDistance(temp1.GetPixel(), temp2.GetPixel()) / MoveSpeed, 0, temp2.GetX(), temp2.GetY(), -8.5f, iTween.EasingType.linear, "CompleteMove", null);
+		iTween.moveTo(gameObject, Vector3.Distance(temp1.GetPixel(), temp2.GetPixel()) / MoveSpeed, 0, temp2.GetX(), temp2.GetY(), -8.5f, iTween.EasingType.linear, "CompleteMove", null);
 	}
 }

@@ -57,7 +57,7 @@ public class Room : MonoBehaviour {
 	}
 
 	void OnDisable(){
-		UIFunction.ClearChild(ref PlayerListPanel);
+		UIFunction.ClearChild(PlayerListPanel);
 		PlayerContainer.Clear();
 		ObjectContainer.Clear();
 		LocalMessage.SetHandler(null);

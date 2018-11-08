@@ -1,14 +1,14 @@
-﻿public enum AttackType {
-	NORMAL = 0, //普通
-	PIERCE = 1, //穿刺
-	MAGIC = 2, //魔法
-	SIEGE = 3, //攻城
-	CHAOS = 4, //混乱
-	SMASH = 5 //粉碎
+﻿public enum AttackType : byte {
+	NORMAL = 1, //普通
+	PIERCE = 2, //穿刺
+	MAGIC = 3, //魔法
+	SIEGE = 4, //攻城
+	CHAOS = 5, //混乱
+	SMASH = 6 //粉碎
 
 }
 
-public enum ArmorType {
+public enum ArmorType : ushort {
 	NONE = 1,  //无甲
 	LEATHER = 2, //皮甲
 	WOOD = 3, //木甲

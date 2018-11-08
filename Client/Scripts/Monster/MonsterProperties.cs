@@ -36,11 +36,10 @@ public class MonsterProperties : MonoBehaviour {
 		BloodBar.transform.SetParent(transform);
 	}
 	void Update() {
-		 Vector3 pt = Camera.main.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y + 0.3f, this.transform.position.z));
+		 Vector3 pt = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z));
 		 BloodBar.transform.position = UICamera.ScreenToWorldPoint(new Vector3(pt.x, pt.y, 1));
-		 //UIFunction.Set3DPosition(ref BloodBar, new Vector3(pt.x, pt.y, -8.5f));
 	}
-	/* 加载当前关卡信息
+	/* 加载当前关卡信息  GameRunning.cs调用
 	   param[check_point]:当前关卡数
 	 */
 	private void LoadCurrentCheckPointMessage(MonsterProperty mp) {
@@ -53,14 +52,19 @@ public class MonsterProperties : MonoBehaviour {
 	private void SetSpeed() {
 		SendMessage("SetMoveSpeed", current.speed);//MoveRoute.cs
 	}
-	/* 当前物体受到攻击时，调用此函数
+	/* 当前物体受到攻击时，调用此函数   由Burst.cs调用
 	   param[damage]:攻击力
 	   param[attack_type]:攻击类型
 	   param[attack_features]:攻击附带效果
 	   param[value]:效果的值
 	   param[time]:持续时间
 	 */
-	private void Damaged(long damage, byte attack_type, uint attack_features = 0, double value = 0, long time = 0) {
+	private void Damaged(AttackMessage arg) {
+		long damage = arg.damage;
+		byte attack_type = arg.attack_type;
+		uint attack_features = arg.attack_features;
+		double value = arg.value;
+		long time = arg.time;
 		switch(attack_type) {
 			case (byte)AttackType.NORMAL:
 			switch(current.armor_type) {
@@ -125,19 +129,7 @@ public class MonsterProperties : MonoBehaviour {
 		}
 		SetFeatures(attack_features, value, time);
 	}
-		/*
-		multitarget = 1, //同时攻击的目标数量
-	range_attack = 2, //是否是范围攻击
-	sputter = 4, //攻击造成伤害时溅射的范围
-	catapult = 8, //攻击时子弹弹射的数量
-	poison = 16, //中毒的真实伤害值（小于1则为最大生命值的百分数，大于等于1则为确定的数值）
-	speeddown = 32, //速度值减少的百分数
-	defense_break = 64, //防御值减少的百分数
-	steal = 128, //杀死怪物额外获得的金币数
-	attack_speedup = 256, //己方塔增加的攻击速度（百分数）
-	attack_damageup = 512 //己方塔增加的攻击力（百分数）
-	 */
-	/* 单纯受到效果影响而没有伤害
+	/* 单纯受到效果影响而没有伤害  MonsterMonitor.cs调用
 	 */
 	private void FeaturesWithoutHurt(FeatureMessage fm) {
 		//新增效果
@@ -223,10 +215,10 @@ public class MonsterProperties : MonoBehaviour {
 	}
 	/* 减血操作
 	   param[damage]:攻击力
-	   param[ratio]:减伤比率
+	   param[ratio]:伤害倍率
 	 */
 	private void DecreaseHipPoint(double damage, double ratio) {
-		double hurt = damage * (1 - ratio);
+		double hurt = damage * ratio;
 		DecreaseOperator(hurt);
 		if(current.hit_point <= 0)
 			Die();
@@ -240,6 +232,8 @@ public class MonsterProperties : MonoBehaviour {
 		else {
 			current.hit_point -= (RealHurt - current.defense_point);
 		}
+		Slider blood = BloodBar.GetComponentInChildren<Slider>();
+		blood.value = (float)(current.hit_point / origin.hit_point);
 	}
 	/* 特效影响效果
 	   param[features]:效果

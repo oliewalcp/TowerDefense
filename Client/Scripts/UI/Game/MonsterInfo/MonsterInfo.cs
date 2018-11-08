@@ -9,9 +9,11 @@ public class MonsterInfo : MonoBehaviour {
 	public Text SpeedText;
 	public Text ArmorTypeText;
 	public Text NextArmorTypeText;
+	//GameRunning.cs调用
 	private void SetNextArmorType(ushort type) {
 		NextArmorTypeText.text = type > 0 ? ("下一关：" + GetArmorType(type)) : "通关啦";
 	}
+	//GameRunning.cs调用
 	private void SetMonsterProperties(MonsterProperty arg) {
 		SetHitpoint(arg.hit_point);
 		SetDefensePoint(arg.defense_point);

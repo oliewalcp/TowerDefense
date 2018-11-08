@@ -17,7 +17,7 @@ public class UIFunction {
 	   param[enter]:房间物体上的按钮文本
 	   param[call]:房间物体上的按钮事件回调函数
 	 */
-	public static void SetRoomMessage(ref GameObject gobject, string room_number, string person, string difficulty, string checkpoint, string enter, Call call = null) {
+	public static void SetRoomMessage(GameObject gobject, string room_number, string person, string difficulty, string checkpoint, string enter, Call call = null) {
 		Text[] child = gobject.transform.GetComponentsInChildren<Text>();
 		child[0].text = room_number;
 		child[1].text = person;
@@ -31,8 +31,8 @@ public class UIFunction {
 				call(ushort.Parse(room_number));
 			});
 	}
-	public static void SetRoomMessage(ref GameObject gobject, RoomMessage rm, Call call = null){
-		SetRoomMessage(ref gobject, rm.GetRoomNumber().ToString(), rm.GetPersonNumber().ToString(), Diff[rm.GetDifficulty()], rm.GetCheckpoint().ToString(), "进入", call);
+	public static void SetRoomMessage(GameObject gobject, RoomMessage rm, Call call = null){
+		SetRoomMessage(gobject, rm.GetRoomNumber().ToString(), rm.GetPersonNumber().ToString(), Diff[rm.GetDifficulty()], rm.GetCheckpoint().ToString(), "进入", call);
 	}
 	/* 设置y玩家信息
 	   param[gobject]:玩家物体
@@ -69,7 +69,7 @@ public class UIFunction {
 	   param[go]:需要改变的物体
 	   param[newSize]:新的大小
 	 */
-	public static void SetSize(ref GameObject go, Vector2 newSize) {
+	public static void SetSize(GameObject go, Vector2 newSize) {
 		RectTransform trans = go.GetComponent<RectTransform>();
 		Vector2 oldSize = trans.rect.size;
         Vector2 deltaSize = newSize - oldSize;
@@ -80,7 +80,7 @@ public class UIFunction {
 	   param[go]:需要改变的物体
 	   param[newPosition]:新的二维坐标
 	 */
-	public static void SetPosition(ref GameObject go, Vector2 newPosition) {
+	public static void SetPosition(GameObject go, Vector2 newPosition) {
 		Rect rect = go.GetComponent<RectTransform>().rect;
 		rect.x = newPosition.x;
 		rect.y = newPosition.y;
@@ -89,7 +89,7 @@ public class UIFunction {
 	   param[go]:需要改变的物体
 	   param[newPosition]:新的三维坐标
 	 */
-	public static void Set3DPosition(ref GameObject go, Vector3 newPosition){
+	public static void Set3DPosition(GameObject go, Vector3 newPosition){
 		go.transform.localPosition = newPosition;
 	}
 	/* 设置物体在地图上的像素位置
@@ -99,8 +99,8 @@ public class UIFunction {
 	public static void SetMapPosition(GameObject go, GPosition gp) {
 		Vector3 newPosition = new Vector3();
 		newPosition.z = -8.5f;
-		newPosition.x = LocalMessage.grid.width / 2 + gp.column * LocalMessage.grid.width;
-		newPosition.y = - (LocalMessage.grid.height / 2 + gp.line * LocalMessage.grid.height);
+		newPosition.x = LocalMessage.grid.width / 2 + gp.column * LocalMessage.grid.width + GameRunning.x_offset;
+		newPosition.y = - (LocalMessage.grid.height / 2 + gp.line * LocalMessage.grid.height) - GameRunning.y_offset;
 		go.transform.localPosition = newPosition;
 	}
 	/* 获取指定地图位置的实际像素位置
@@ -109,8 +109,8 @@ public class UIFunction {
 	 */
 	public static Vector2 GetPixelPosition(GPosition gp) {
 		Vector2 newPosition = new Vector2();
-		newPosition.x = LocalMessage.grid.width / 2 + (float)(gp.column) * LocalMessage.grid.width;
-		newPosition.y = - (LocalMessage.grid.height / 2 + (float)(gp.line) * LocalMessage.grid.height);
+		newPosition.x = LocalMessage.grid.width / 2 + (float)(gp.column) * LocalMessage.grid.width + GameRunning.x_offset;
+		newPosition.y = - (LocalMessage.grid.height / 2 + (float)(gp.line) * LocalMessage.grid.height) - GameRunning.y_offset;
 		return newPosition;
 	}
 	/* 获取物体在地图上的位置
@@ -130,14 +130,11 @@ public class UIFunction {
 	   param[go]:需要改变的物体
 	   param[newScale]:新的大小倍率
 	 */
-	public static void SetScale(ref GameObject go, ref Vector3 newScale){
-		go.transform.localScale = newScale;
-	}
 	public static void SetScale(GameObject go, Vector3 newScale){
 		go.transform.localScale = newScale;
 	}
 	//清空子组件
-	public static void ClearChild(ref GameObject go) {
+	public static void ClearChild(GameObject go) {
 		Transform temp = go.transform;
 		int num = temp.childCount;
 		for(int i = 0; i < num; i++)

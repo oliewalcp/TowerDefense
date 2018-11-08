@@ -23,7 +23,7 @@ public class TowerList : MonoBehaviour {
 				parent.transform.SetParent(transform);
 				parent.SendMessage("AddImage", go);//SelectTower.cs
 				parent.transform.localPosition = temp;
-				UIFunction.SetScale(ref parent, ref one);
+				UIFunction.SetScale(parent, one);
 			} catch {
 				continue;
 			}

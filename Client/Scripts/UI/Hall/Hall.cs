@@ -35,7 +35,7 @@ public class Hall : MonoBehaviour {
 	void OnDisable(){
 		RoomContainer1.Clear();
 		RoomContainer2.Clear();
-		UIFunction.ClearChild(ref RoomListPanel);
+		UIFunction.ClearChild(RoomListPanel);
 		//EditorUtility.DisplayDialog("关闭", "离开大厅", "关闭");
 	}
 	void Start () {
@@ -79,9 +79,9 @@ public class Hall : MonoBehaviour {
 	private GameObject CreateRoomBar(string room_number, string person, string difficulty, string checkpoint, string enter, UIFunction.Call call = null){
 		if(call == null) call = RoomClick;
 		GameObject go = (GameObject)Instantiate(Resources.Load("Prefabs/RoomBar"));
-		UIFunction.SetRoomMessage(ref go, room_number, person, difficulty, checkpoint, enter, call);
+		UIFunction.SetRoomMessage(go, room_number, person, difficulty, checkpoint, enter, call);
 		go.transform.SetParent(RoomListPanel.transform);
-		//UIFunction.SetPosition(ref go, new Vector2(0, 0));
+		//UIFunction.SetPosition(go, new Vector2(0, 0));
 		go.transform.localScale = new Vector3(1, 1, 1);
 		return go;
 	}
@@ -157,14 +157,14 @@ public class Hall : MonoBehaviour {
 			GameObject temp_go = null;
 			if(RoomContainer2.ContainsKey(temp_room_num)){
 				temp_go = RoomContainer2[temp_room_num];
-				UIFunction.SetRoomMessage(ref temp_go, temp_room);
+				UIFunction.SetRoomMessage(temp_go, temp_room);
 			} else {
 				//创建新的物体
 				temp_go = (GameObject)Instantiate(Resources.Load("Prefabs/RoomBar"));
 				temp_go.transform.parent = RoomListPanel.transform;
-				UIFunction.SetPosition(ref temp_go, new Vector2(0, 0));
+				UIFunction.SetPosition(temp_go, new Vector2(0, 0));
 				temp_go.transform.localScale = new Vector3(1, 1, 1);
-				UIFunction.SetRoomMessage(ref temp_go, temp_room, RoomClick);
+				UIFunction.SetRoomMessage(temp_go, temp_room, RoomClick);
 				RoomContainer2.Add(temp_room_num, temp_go);
 				RoomContainer1.Add(temp_go, temp_room_num);
 			}

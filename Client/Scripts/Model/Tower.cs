@@ -49,13 +49,13 @@ public class Tower {
 	public int attack_type{get; set;} //攻击类型
 	public double crit_rate{get; set;} //暴击率
 	public double crit_damage{get; set;} //暴击伤害倍率
-	public int attack_range{get; set;} //攻击范围
+	public double attack_range{get; set;} //攻击范围
 	public long attack_interval{get; set;} //攻击间隔时间（毫秒）
 	public int domain_width{get; set;} //占用宽度的格子数
 	public int domain_height{get; set;} //占用高度的格子数
 	public SpecialEffect features = null;//塔本身具备的特性
 	public Tower(string name, string detail = "", int build_gold = 0, double damage = 0, int attack_type = 0, double crit_rate = 0, double crit_damage = 0, 
-		int attack_range = 0, long attack_interval = 0, int domain_width = 1, int domain_height = 1){
+		double attack_range = 0, long attack_interval = 0, int domain_width = 1, int domain_height = 1){
 		this.name = name;
 		this.build_gold = build_gold;
 		this.detail = detail;

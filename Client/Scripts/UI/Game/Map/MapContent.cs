@@ -5,7 +5,7 @@ using UnityEngine;
 public class MapContent : MonoBehaviour {
 	public static string CurrentSelectTower = "";
 	public static GameObject ClickedTower = null;
-	private readonly LayerMask Mask = 3 << 8;
+	private readonly LayerMask Mask = 1 << 8;
 	private const int MaxDistance = 600;
 	// Update is called once per frame
 	void Update () {

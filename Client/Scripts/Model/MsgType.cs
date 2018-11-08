@@ -14,8 +14,3 @@ public class MsgType {
 	public const byte HeartBeat = 254;//心跳包
 	public const byte Synchronous = 255;//同步
 }
-
-public struct Function {
-	public string function_name;
-	public object param;
-}

@@ -47,6 +47,7 @@ public class GameRunning : MonoBehaviour {
 	private const string BOSS_BONUS = "boss_bonus";
 
 	void Start() {
+		BulletInfo.ReadFile();
 		TowerFileXml.Open(tower_data);
 	}
 	// Use this for initialization
@@ -90,9 +91,9 @@ public class GameRunning : MonoBehaviour {
 	//加载地图
 	private void LoadMap(){	
 		// //设置地图区域的位置
-		UIFunction.SetPosition(ref MapPanel, new Vector2(0, 0));
+		UIFunction.SetPosition(MapPanel, new Vector2(0, 0));
 		//设置地图区域的大小
-		UIFunction.SetSize(ref MapPanel, new Vector2(BaseLength, BaseLength));
+		UIFunction.SetSize(MapPanel, new Vector2(BaseLength, BaseLength));
 
 		int line = LocalMessage.Map.Length, column = LocalMessage.Map[0].Length;
 		float width = BaseLength / column, height = BaseLength / line, halfWidth = width / 2, halfHeight = height / 2;
@@ -108,8 +109,8 @@ public class GameRunning : MonoBehaviour {
 				go.transform.localEulerAngles = new Vector3(0, 0, 180);
 				go.transform.SetParent(MapPanel.transform);
 				go.name = go.name.Replace("(Clone)", "");
-				UIFunction.SetScale(ref go, ref scale);
-				UIFunction.Set3DPosition(ref go, new Vector3(halfHeight + j * height + x_offset, - (halfWidth + i * width) + y_offset, -0.09f));
+				UIFunction.SetScale(go, scale);
+				UIFunction.Set3DPosition(go, new Vector3(halfHeight + j * height + x_offset, - (halfWidth + i * width) + y_offset, -0.09f));
 			}
 		}
 		LocalMessage.grid.width = width;
@@ -124,7 +125,7 @@ public class GameRunning : MonoBehaviour {
 	void OnDisable(){
 		xml.Close();
 		TowerFileXml.Close();
-		UIFunction.ClearChild(ref MapPanel);
+		UIFunction.ClearChild(MapPanel);
 		LocalMessage.SetHandler(null);
 	}
 	//产生怪物
@@ -183,12 +184,12 @@ public class GameRunning : MonoBehaviour {
 	private void CreateMonster(string monster, MonsterProperty message, Vector3 scale) {
 		GameObject go = (GameObject)Instantiate(Resources.Load("Prefabs/" + monster));
 		go.transform.SetParent(MapPanel.transform);
-		UIFunction.SetScale(ref go, ref scale);
+		UIFunction.SetScale(go, scale);
 		go.SetActive(true);
 		go.SendMessage("SetMessageReceiver", gameObject);//MoveRoute.cs
 		go.SendMessage("LoadCurrentCheckPointMessage", message);//MonsterProperties.cs
 	}
-	/* 跑掉一个怪物，减少生命值
+	/* 跑掉一个怪物，减少生命值   MoveRoute.cs调用
 	   param[num]:减少的生命值数
 	 */
 	private void EscapeMonster(int num = 1) {

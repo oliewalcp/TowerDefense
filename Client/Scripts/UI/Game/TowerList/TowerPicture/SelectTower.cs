@@ -9,6 +9,7 @@ public class SelectTower : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
 	private GameObject child = null;
 	private const string NAME = "name";
 	private const string DETAIL = "detail";
+	private const string BUILD_GOLD = "build_gold";
 	private bool enter = false;
 	private static readonly Color HightLight = new Color(255, 0, 255);
 	private static readonly Color Normal = new Color(255, 255, 255);
@@ -36,9 +37,10 @@ public class SelectTower : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
 
 	void OnGUI() {
 		if(enter) {
-			Rect rect = new Rect(Input.mousePosition.x + 30, Screen.height - Input.mousePosition.y, 100, 60);
+			Rect rect = new Rect(Input.mousePosition.x + 30, Screen.height - Input.mousePosition.y, 100, 75);
 			GameRunning.TowerFileXml.BeginParentNode(child.name.Replace("(Clone)", ""));
 			string display = GameRunning.TowerFileXml.GetValue(NAME) + "  " + GameRunning.TowerFileXml.GetValue(DETAIL);
+			display += "\n花费：" + GameRunning.TowerFileXml.GetValue(BUILD_GOLD);
 			GameRunning.TowerFileXml.EndParentNode();
 			GUI.Label(rect, display);
 		}

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TowerData : MonoBehaviour {
 	static public Dictionary<string, Tower> AllTower = new Dictionary<string, Tower>();
-	public const float UnitRadius = 0.0328f;//Collider一格范围的半径
 	private const string TowerDataFile = "Data/Towers.xml";
 	private const string NAME = "name";//名称
 	private const string DETAIL = "detail";//描述
@@ -43,7 +42,7 @@ public class TowerData : MonoBehaviour {
 			Tower temp_t = new Tower(xml.GetValue(NAME), xml.GetValue(DETAIL), int.Parse(xml.GetValue(BUILD_GOLD)), 
 				double.Parse(xml.GetValue(DAMAGE)), int.Parse(xml.GetValue(ATTACK_TYPE)),
 				double.Parse(xml.GetValue(CRIT_RATE)), double.Parse(xml.GetValue(CRIT_DAMAGE)), 
-				int.Parse(xml.GetValue(ATTACK_RANGE)), long.Parse(xml.GetValue(ATTACK_INTERVAL)),
+				double.Parse(xml.GetValue(ATTACK_RANGE)), long.Parse(xml.GetValue(ATTACK_INTERVAL)),
 				int.Parse(xml.GetValue(DOMAIN_WITDH)), int.Parse(xml.GetValue(DOMAIN_HEIGHT)));
 			//获取塔的效果信息
 			long last_time = long.Parse(xml.GetValue(EFFECT_LAST_TIME));
