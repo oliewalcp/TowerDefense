@@ -1,0 +1,1951 @@
+fileFormatVersion: 2
+guid: 84a9dc2527c7388448df38a2671edc97
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: 3D Models at 3dxy
+    100002: Box01
+    100004: Box02
+    100006: Box03
+    100008: Box04
+    100010: Box05
+    100012: Box06
+    100014: Box07
+    100016: Box08
+    100018: Box09
+    100020: Box10
+    100022: Box100
+    100024: Box101
+    100026: Box102
+    100028: Box103
+    100030: Box104
+    100032: Box105
+    100034: Box106
+    100036: Box107
+    100038: Box108
+    100040: Box109
+    100042: Box11
+    100044: Box110
+    100046: Box111
+    100048: Box112
+    100050: Box113
+    100052: Box114
+    100054: Box115
+    100056: Box116
+    100058: Box117
+    100060: Box118
+    100062: Box119
+    100064: Box12
+    100066: Box120
+    100068: Box121
+    100070: Box122
+    100072: Box123
+    100074: Box124
+    100076: Box125
+    100078: Box126
+    100080: Box127
+    100082: Box128
+    100084: Box129
+    100086: Box13
+    100088: Box130
+    100090: Box131
+    100092: Box132
+    100094: Box133
+    100096: Box134
+    100098: Box135
+    100100: Box136
+    100102: Box137
+    100104: Box138
+    100106: Box139
+    100108: Box14
+    100110: Box140
+    100112: Box141
+    100114: Box142
+    100116: Box143
+    100118: Box144
+    100120: Box145
+    100122: Box146
+    100124: Box147
+    100126: Box148
+    100128: Box149
+    100130: Box15
+    100132: Box150
+    100134: Box151
+    100136: Box152
+    100138: Box153
+    100140: Box154
+    100142: Box155
+    100144: Box156
+    100146: Box157
+    100148: Box158
+    100150: Box159
+    100152: Box16
+    100154: Box160
+    100156: Box161
+    100158: Box162
+    100160: Box163
+    100162: Box164
+    100164: Box165
+    100166: Box166
+    100168: Box167
+    100170: Box168
+    100172: Box169
+    100174: Box17
+    100176: Box170
+    100178: Box171
+    100180: Box172
+    100182: Box173
+    100184: Box174
+    100186: Box175
+    100188: Box18
+    100190: Box19
+    100192: Box20
+    100194: Box21
+    100196: Box22
+    100198: Box23
+    100200: Box24
+    100202: Box25
+    100204: Box26
+    100206: Box27
+    100208: Box28
+    100210: Box29
+    100212: Box30
+    100214: Box31
+    100216: Box32
+    100218: Box33
+    100220: Box34
+    100222: Box35
+    100224: Box36
+    100226: Box37
+    100228: Box38
+    100230: Box39
+    100232: Box40
+    100234: Box41
+    100236: Box42
+    100238: Box43
+    100240: Box44
+    100242: Box45
+    100244: Box46
+    100246: Box47
+    100248: Box48
+    100250: Box49
+    100252: Box50
+    100254: Box51
+    100256: Box52
+    100258: Box53
+    100260: Box54
+    100262: Box55
+    100264: Box56
+    100266: Box57
+    100268: Box58
+    100270: Box59
+    100272: Box60
+    100274: Box61
+    100276: Box62
+    100278: Box63
+    100280: Box64
+    100282: Box65
+    100284: Box66
+    100286: Box67
+    100288: Box68
+    100290: Box69
+    100292: Box70
+    100294: Box71
+    100296: Box72
+    100298: Box73
+    100300: Box74
+    100302: Box75
+    100304: Box76
+    100306: Box77
+    100308: Box78
+    100310: Box79
+    100312: Box80
+    100314: Box81
+    100316: Box82
+    100318: Box83
+    100320: Box84
+    100322: Box85
+    100324: Box86
+    100326: Box88
+    100328: Box89
+    100330: Box90
+    100332: Box91
+    100334: Box92
+    100336: Box93
+    100338: Box94
+    100340: Box95
+    100342: Box96
+    100344: Box97
+    100346: Box98
+    100348: Box99
+    100350: Cabin Carcass01
+    100352: Cabin Carcass02
+    100354: Cabin01
+    100356: Cabin02
+    100358: ChamferCyl02
+    100360: ChamferCyl03
+    100362: ChamferCyl04
+    100364: ChamferCyl05
+    100366: ChamferCyl06
+    100368: ChamferCyl07
+    100370: ChamferCyl08
+    100372: ChamferCyl09
+    100374: ChamferCyl10
+    100376: ChamferCyl12
+    100378: ChamferCyl13
+    100380: ChamferCyl14
+    100382: ChamferCyl15
+    100384: ChamferCyl16
+    100386: ChamferCyl17
+    100388: ChamferCyl18
+    100390: ChamferCyl19
+    100392: ChamferCyl20
+    100394: ChamferCyl21
+    100396: ChamferCyl22
+    100398: ChamferCyl23
+    100400: ChamferCyl24
+    100402: ChamferCyl25
+    100404: ChamferCyl26
+    100406: ChamferCyl27
+    100408: ChamferCyl28
+    100410: ChamferCyl29
+    100412: Cylinder01
+    100414: Cylinder02
+    100416: Cylinder03
+    100418: Cylinder04
+    100420: Cylinder05
+    100422: Cylinder06
+    100424: Cylinder07
+    100426: Cylinder08
+    100428: Cylinder09
+    100430: Cylinder10
+    100432: Cylinder11
+    100434: Cylinder12
+    100436: Cylinder13
+    100438: Cylinder14
+    100440: Cylinder15
+    100442: Cylinder16
+    100444: Cylinder17
+    100446: Cylinder18
+    100448: Cylinder19
+    100450: Cylinder20
+    100452: Cylinder21
+    100454: Cylinder22
+    100456: Cylinder23
+    100458: //RootNode
+    100460: Fuselage
+    100462: Inner Cabin
+    100464: Left Air Intake
+    100466: Left Back Turbina
+    100468: Left Bottom Keel
+    100470: Left Console Pilon
+    100472: Left Eleron
+    100474: Left Front Turbina
+    100476: Left Inner Soplo
+    100478: Left Keel
+    100480: Left Main Gear Disk
+    100482: Left Main Gear Door01
+    100484: Left Main Gear Door02
+    100486: Left Main Gear Fara
+    100488: Left Main Gear Main Part
+    100490: Left Main Gear Main Part01
+    100492: Left Main Gear Porshen
+    100494: Left Main Gear Porshen01
+    100496: Left Main Gear Room
+    100498: Left Main Gear Shlang03
+    100500: Left Main Gear Shlang04
+    100502: Left MGear Btm Corner
+    100504: Left MGear Btm Corner01
+    100506: Left MGear Holder
+    100508: Left MGear Pnevmatic
+    100510: Left MGear Top Corner
+    100512: Left MGear Top Corner01
+    100514: Left PGO
+    100516: Left Pilon01
+    100518: Left Pilon02
+    100520: Left Pilon03
+    100522: Left Pilon04
+    100524: Left Pre-Wing
+    100526: Left Rocket
+    100528: Left Rocket01
+    100530: Left Rocket02
+    100532: Left Rocket03
+    100534: Left Rocket04
+    100536: Left Ruler
+    100538: Left Soplo
+    100540: Left Stabilizer
+    100542: Left Wing
+    100544: Line01
+    100546: Line02
+    100548: Line03
+    100550: Line04
+    100552: Line05
+    100554: Line06
+    100556: Line07
+    100558: Line08
+    100560: Line09
+    100562: Line10
+    100564: Line11
+    100566: Line12
+    100568: Line13
+    100570: Line14
+    100572: Line15
+    100574: Line16
+    100576: Line17
+    100578: Line18
+    100580: Line19
+    100582: Line20
+    100584: Line21
+    100586: Line22
+    100588: Line23
+    100590: Line24
+    100592: Line25
+    100594: Line26
+    100596: Line27
+    100598: Line28
+    100600: Line29
+    100602: Line30
+    100604: Line31
+    100606: Line32
+    100608: Line33
+    100610: Line34
+    100612: Line35
+    100614: Line36
+    100616: Line37
+    100618: Line38
+    100620: Line39
+    100622: Line40
+    100624: Line41
+    100626: Line42
+    100628: Line43
+    100630: Line44
+    100632: Line45
+    100634: Line46
+    100636: Line47
+    100638: Line48
+    100640: Line49
+    100642: Line50
+    100644: Line51
+    100646: Line52
+    100648: Line53
+    100650: Line54
+    100652: Line55
+    100654: Line56
+    100656: Line57
+    100658: Line58
+    100660: Line59
+    100662: Line60
+    100664: Line61
+    100666: Line62
+    100668: Line63
+    100670: Line64
+    100672: Line65
+    100674: Line66
+    100676: Line67
+    100678: Line68
+    100680: Line72
+    100682: Line74
+    100684: Line75
+    100686: Line76
+    100688: Line77
+    100690: Line78
+    100692: Line79
+    100694: Nise Gear Left Fara
+    100696: Nise Gear Right Fara
+    100698: Nise Pnevmatic
+    100700: Nose Gear Cylinder02
+    100702: Nose Gear Disk
+    100704: Nose Gear Door01
+    100706: Nose Gear Door02
+    100708: Nose Gear Room
+    100710: Nose Gear Wheel Holder
+    100712: Noze Gear Cylinder01
+    100714: Noze Gear Mian
+    100716: Noze Gear Porshen01
+    100718: Noze Gear Porshen02
+    100720: Operator Ctrl Panel
+    100722: Operator Fuel Ctrl
+    100724: Operator Horizon
+    100726: Operator Seat
+    100728: Pilot Ctrl Panel
+    100730: Pilot Fuel Ctrl
+    100732: Pilot Horizon
+    100734: Pilot LCI
+    100736: Pilot LCI Border
+    100738: Pilot LCI Border01
+    100740: Pilot LCI01
+    100742: Pilot Seat
+    100744: Pito Tube
+    100746: Right Air Intake
+    100748: Right Back Turbina
+    100750: Right Bottom Keel
+    100752: Right Console Pilon
+    100754: Right Display
+    100756: Right Display01
+    100758: Right Display02
+    100760: Right Display03
+    100762: Right Eleron
+    100764: Right Front Turbina
+    100766: Right Inner Soplo
+    100768: Right Keel
+    100770: Right Main Gear Door01
+    100772: Right Main Gear Door02
+    100774: Right Main Gear Fara
+    100776: Right Main Gear Room
+    100778: Right MGear Holder
+    100780: Right MGear Pnevmatic
+    100782: Right PGO
+    100784: Right Pilon01
+    100786: Right Pilon02
+    100788: Right Pilon03
+    100790: Right Pilon04
+    100792: Right Pre-Wing
+    100794: Right Rocket
+    100796: Right Rocket01
+    100798: Right Rocket02
+    100800: Right Rocket03
+    100802: Right Rocket04
+    100804: Right Ruler
+    100806: Right Soplo
+    100808: Right Stabilizer
+    100810: Right Wing
+    100812: Rightt Main Gear Disk
+    100814: Trash Protector
+    100816: Trash Protector Holder
+    400000: 3D Models at 3dxy
+    400002: Box01
+    400004: Box02
+    400006: Box03
+    400008: Box04
+    400010: Box05
+    400012: Box06
+    400014: Box07
+    400016: Box08
+    400018: Box09
+    400020: Box10
+    400022: Box100
+    400024: Box101
+    400026: Box102
+    400028: Box103
+    400030: Box104
+    400032: Box105
+    400034: Box106
+    400036: Box107
+    400038: Box108
+    400040: Box109
+    400042: Box11
+    400044: Box110
+    400046: Box111
+    400048: Box112
+    400050: Box113
+    400052: Box114
+    400054: Box115
+    400056: Box116
+    400058: Box117
+    400060: Box118
+    400062: Box119
+    400064: Box12
+    400066: Box120
+    400068: Box121
+    400070: Box122
+    400072: Box123
+    400074: Box124
+    400076: Box125
+    400078: Box126
+    400080: Box127
+    400082: Box128
+    400084: Box129
+    400086: Box13
+    400088: Box130
+    400090: Box131
+    400092: Box132
+    400094: Box133
+    400096: Box134
+    400098: Box135
+    400100: Box136
+    400102: Box137
+    400104: Box138
+    400106: Box139
+    400108: Box14
+    400110: Box140
+    400112: Box141
+    400114: Box142
+    400116: Box143
+    400118: Box144
+    400120: Box145
+    400122: Box146
+    400124: Box147
+    400126: Box148
+    400128: Box149
+    400130: Box15
+    400132: Box150
+    400134: Box151
+    400136: Box152
+    400138: Box153
+    400140: Box154
+    400142: Box155
+    400144: Box156
+    400146: Box157
+    400148: Box158
+    400150: Box159
+    400152: Box16
+    400154: Box160
+    400156: Box161
+    400158: Box162
+    400160: Box163
+    400162: Box164
+    400164: Box165
+    400166: Box166
+    400168: Box167
+    400170: Box168
+    400172: Box169
+    400174: Box17
+    400176: Box170
+    400178: Box171
+    400180: Box172
+    400182: Box173
+    400184: Box174
+    400186: Box175
+    400188: Box18
+    400190: Box19
+    400192: Box20
+    400194: Box21
+    400196: Box22
+    400198: Box23
+    400200: Box24
+    400202: Box25
+    400204: Box26
+    400206: Box27
+    400208: Box28
+    400210: Box29
+    400212: Box30
+    400214: Box31
+    400216: Box32
+    400218: Box33
+    400220: Box34
+    400222: Box35
+    400224: Box36
+    400226: Box37
+    400228: Box38
+    400230: Box39
+    400232: Box40
+    400234: Box41
+    400236: Box42
+    400238: Box43
+    400240: Box44
+    400242: Box45
+    400244: Box46
+    400246: Box47
+    400248: Box48
+    400250: Box49
+    400252: Box50
+    400254: Box51
+    400256: Box52
+    400258: Box53
+    400260: Box54
+    400262: Box55
+    400264: Box56
+    400266: Box57
+    400268: Box58
+    400270: Box59
+    400272: Box60
+    400274: Box61
+    400276: Box62
+    400278: Box63
+    400280: Box64
+    400282: Box65
+    400284: Box66
+    400286: Box67
+    400288: Box68
+    400290: Box69
+    400292: Box70
+    400294: Box71
+    400296: Box72
+    400298: Box73
+    400300: Box74
+    400302: Box75
+    400304: Box76
+    400306: Box77
+    400308: Box78
+    400310: Box79
+    400312: Box80
+    400314: Box81
+    400316: Box82
+    400318: Box83
+    400320: Box84
+    400322: Box85
+    400324: Box86
+    400326: Box88
+    400328: Box89
+    400330: Box90
+    400332: Box91
+    400334: Box92
+    400336: Box93
+    400338: Box94
+    400340: Box95
+    400342: Box96
+    400344: Box97
+    400346: Box98
+    400348: Box99
+    400350: Cabin Carcass01
+    400352: Cabin Carcass02
+    400354: Cabin01
+    400356: Cabin02
+    400358: ChamferCyl02
+    400360: ChamferCyl03
+    400362: ChamferCyl04
+    400364: ChamferCyl05
+    400366: ChamferCyl06
+    400368: ChamferCyl07
+    400370: ChamferCyl08
+    400372: ChamferCyl09
+    400374: ChamferCyl10
+    400376: ChamferCyl12
+    400378: ChamferCyl13
+    400380: ChamferCyl14
+    400382: ChamferCyl15
+    400384: ChamferCyl16
+    400386: ChamferCyl17
+    400388: ChamferCyl18
+    400390: ChamferCyl19
+    400392: ChamferCyl20
+    400394: ChamferCyl21
+    400396: ChamferCyl22
+    400398: ChamferCyl23
+    400400: ChamferCyl24
+    400402: ChamferCyl25
+    400404: ChamferCyl26
+    400406: ChamferCyl27
+    400408: ChamferCyl28
+    400410: ChamferCyl29
+    400412: Cylinder01
+    400414: Cylinder02
+    400416: Cylinder03
+    400418: Cylinder04
+    400420: Cylinder05
+    400422: Cylinder06
+    400424: Cylinder07
+    400426: Cylinder08
+    400428: Cylinder09
+    400430: Cylinder10
+    400432: Cylinder11
+    400434: Cylinder12
+    400436: Cylinder13
+    400438: Cylinder14
+    400440: Cylinder15
+    400442: Cylinder16
+    400444: Cylinder17
+    400446: Cylinder18
+    400448: Cylinder19
+    400450: Cylinder20
+    400452: Cylinder21
+    400454: Cylinder22
+    400456: Cylinder23
+    400458: //RootNode
+    400460: Fuselage
+    400462: Inner Cabin
+    400464: Left Air Intake
+    400466: Left Back Turbina
+    400468: Left Bottom Keel
+    400470: Left Console Pilon
+    400472: Left Eleron
+    400474: Left Front Turbina
+    400476: Left Inner Soplo
+    400478: Left Keel
+    400480: Left Main Gear Disk
+    400482: Left Main Gear Door01
+    400484: Left Main Gear Door02
+    400486: Left Main Gear Fara
+    400488: Left Main Gear Main Part
+    400490: Left Main Gear Main Part01
+    400492: Left Main Gear Porshen
+    400494: Left Main Gear Porshen01
+    400496: Left Main Gear Room
+    400498: Left Main Gear Shlang03
+    400500: Left Main Gear Shlang04
+    400502: Left MGear Btm Corner
+    400504: Left MGear Btm Corner01
+    400506: Left MGear Holder
+    400508: Left MGear Pnevmatic
+    400510: Left MGear Top Corner
+    400512: Left MGear Top Corner01
+    400514: Left PGO
+    400516: Left Pilon01
+    400518: Left Pilon02
+    400520: Left Pilon03
+    400522: Left Pilon04
+    400524: Left Pre-Wing
+    400526: Left Rocket
+    400528: Left Rocket01
+    400530: Left Rocket02
+    400532: Left Rocket03
+    400534: Left Rocket04
+    400536: Left Ruler
+    400538: Left Soplo
+    400540: Left Stabilizer
+    400542: Left Wing
+    400544: Line01
+    400546: Line02
+    400548: Line03
+    400550: Line04
+    400552: Line05
+    400554: Line06
+    400556: Line07
+    400558: Line08
+    400560: Line09
+    400562: Line10
+    400564: Line11
+    400566: Line12
+    400568: Line13
+    400570: Line14
+    400572: Line15
+    400574: Line16
+    400576: Line17
+    400578: Line18
+    400580: Line19
+    400582: Line20
+    400584: Line21
+    400586: Line22
+    400588: Line23
+    400590: Line24
+    400592: Line25
+    400594: Line26
+    400596: Line27
+    400598: Line28
+    400600: Line29
+    400602: Line30
+    400604: Line31
+    400606: Line32
+    400608: Line33
+    400610: Line34
+    400612: Line35
+    400614: Line36
+    400616: Line37
+    400618: Line38
+    400620: Line39
+    400622: Line40
+    400624: Line41
+    400626: Line42
+    400628: Line43
+    400630: Line44
+    400632: Line45
+    400634: Line46
+    400636: Line47
+    400638: Line48
+    400640: Line49
+    400642: Line50
+    400644: Line51
+    400646: Line52
+    400648: Line53
+    400650: Line54
+    400652: Line55
+    400654: Line56
+    400656: Line57
+    400658: Line58
+    400660: Line59
+    400662: Line60
+    400664: Line61
+    400666: Line62
+    400668: Line63
+    400670: Line64
+    400672: Line65
+    400674: Line66
+    400676: Line67
+    400678: Line68
+    400680: Line72
+    400682: Line74
+    400684: Line75
+    400686: Line76
+    400688: Line77
+    400690: Line78
+    400692: Line79
+    400694: Nise Gear Left Fara
+    400696: Nise Gear Right Fara
+    400698: Nise Pnevmatic
+    400700: Nose Gear Cylinder02
+    400702: Nose Gear Disk
+    400704: Nose Gear Door01
+    400706: Nose Gear Door02
+    400708: Nose Gear Room
+    400710: Nose Gear Wheel Holder
+    400712: Noze Gear Cylinder01
+    400714: Noze Gear Mian
+    400716: Noze Gear Porshen01
+    400718: Noze Gear Porshen02
+    400720: Operator Ctrl Panel
+    400722: Operator Fuel Ctrl
+    400724: Operator Horizon
+    400726: Operator Seat
+    400728: Pilot Ctrl Panel
+    400730: Pilot Fuel Ctrl
+    400732: Pilot Horizon
+    400734: Pilot LCI
+    400736: Pilot LCI Border
+    400738: Pilot LCI Border01
+    400740: Pilot LCI01
+    400742: Pilot Seat
+    400744: Pito Tube
+    400746: Right Air Intake
+    400748: Right Back Turbina
+    400750: Right Bottom Keel
+    400752: Right Console Pilon
+    400754: Right Display
+    400756: Right Display01
+    400758: Right Display02
+    400760: Right Display03
+    400762: Right Eleron
+    400764: Right Front Turbina
+    400766: Right Inner Soplo
+    400768: Right Keel
+    400770: Right Main Gear Door01
+    400772: Right Main Gear Door02
+    400774: Right Main Gear Fara
+    400776: Right Main Gear Room
+    400778: Right MGear Holder
+    400780: Right MGear Pnevmatic
+    400782: Right PGO
+    400784: Right Pilon01
+    400786: Right Pilon02
+    400788: Right Pilon03
+    400790: Right Pilon04
+    400792: Right Pre-Wing
+    400794: Right Rocket
+    400796: Right Rocket01
+    400798: Right Rocket02
+    400800: Right Rocket03
+    400802: Right Rocket04
+    400804: Right Ruler
+    400806: Right Soplo
+    400808: Right Stabilizer
+    400810: Right Wing
+    400812: Rightt Main Gear Disk
+    400814: Trash Protector
+    400816: Trash Protector Holder
+    2100000: Anthens
+    2100002: Bottom
+    2100004: Top
+    2100006: Left Side
+    2100008: Right Side
+    2100010: Left Nose Side
+    2100012: Right Nose Side
+    2100014: IRC
+    2100016: Left Pilon Mat
+    2100018: No Name
+    2100020: Top Mat
+    2100022: Bottom Mat
+    2100024: Outer Mat
+    2100026: Inner Mat
+    2100028: Large Pilon Mat
+    2100030: Top Side
+    2100032: Bottom Side
+    2100034: Gear Mat
+    2100036: Inner Soplo Mat
+    2100038: Bottom Keel Mat
+    2100040: Air Intake Mat
+    2100042: White Mat
+    2100044: NGear Door02 Mat
+    2100046: suliao
+    2100048: Cabin Glass Mat
+    2100050: Smal Pilon Mat
+    2100052: Right Pilon Mat
+    2100054: Rocket IRC Mat
+    2100056: Rocked Red Mat
+    2100058: Main
+    2100060: Rocket Soplo Mat
+    2100062: Rocket Stab Mat
+    2100064: Cone Mat
+    2100066: Lopatka Mat
+    2100068: Seat
+    2100070: FlatBlac
+    2100072: Porshens Mat
+    2100074: Ruler Mat
+    2100076: Main Mat
+    2100078: Nose Mat
+    2100080: Soplo Mat
+    2100082: Stab Mat
+    2100084: Glass
+    2100086: Disks Mat
+    2100088: Pnevmatics Mat
+    2300000: Box01
+    2300002: Box02
+    2300004: Box03
+    2300006: Box04
+    2300008: Box05
+    2300010: Box06
+    2300012: Box07
+    2300014: Box08
+    2300016: Box09
+    2300018: Box10
+    2300020: Box100
+    2300022: Box101
+    2300024: Box102
+    2300026: Box103
+    2300028: Box104
+    2300030: Box105
+    2300032: Box106
+    2300034: Box107
+    2300036: Box108
+    2300038: Box109
+    2300040: Box11
+    2300042: Box110
+    2300044: Box111
+    2300046: Box112
+    2300048: Box113
+    2300050: Box114
+    2300052: Box115
+    2300054: Box116
+    2300056: Box117
+    2300058: Box118
+    2300060: Box119
+    2300062: Box12
+    2300064: Box120
+    2300066: Box121
+    2300068: Box122
+    2300070: Box123
+    2300072: Box124
+    2300074: Box125
+    2300076: Box126
+    2300078: Box127
+    2300080: Box128
+    2300082: Box129
+    2300084: Box13
+    2300086: Box130
+    2300088: Box131
+    2300090: Box132
+    2300092: Box133
+    2300094: Box134
+    2300096: Box135
+    2300098: Box136
+    2300100: Box137
+    2300102: Box138
+    2300104: Box139
+    2300106: Box14
+    2300108: Box140
+    2300110: Box141
+    2300112: Box142
+    2300114: Box143
+    2300116: Box144
+    2300118: Box145
+    2300120: Box146
+    2300122: Box147
+    2300124: Box148
+    2300126: Box149
+    2300128: Box15
+    2300130: Box150
+    2300132: Box151
+    2300134: Box152
+    2300136: Box153
+    2300138: Box154
+    2300140: Box155
+    2300142: Box156
+    2300144: Box157
+    2300146: Box158
+    2300148: Box159
+    2300150: Box16
+    2300152: Box160
+    2300154: Box161
+    2300156: Box162
+    2300158: Box163
+    2300160: Box164
+    2300162: Box165
+    2300164: Box166
+    2300166: Box167
+    2300168: Box168
+    2300170: Box169
+    2300172: Box17
+    2300174: Box170
+    2300176: Box171
+    2300178: Box172
+    2300180: Box173
+    2300182: Box174
+    2300184: Box175
+    2300186: Box18
+    2300188: Box19
+    2300190: Box20
+    2300192: Box21
+    2300194: Box22
+    2300196: Box23
+    2300198: Box24
+    2300200: Box25
+    2300202: Box26
+    2300204: Box27
+    2300206: Box28
+    2300208: Box29
+    2300210: Box30
+    2300212: Box31
+    2300214: Box32
+    2300216: Box33
+    2300218: Box34
+    2300220: Box35
+    2300222: Box36
+    2300224: Box37
+    2300226: Box38
+    2300228: Box39
+    2300230: Box40
+    2300232: Box41
+    2300234: Box42
+    2300236: Box43
+    2300238: Box44
+    2300240: Box45
+    2300242: Box46
+    2300244: Box47
+    2300246: Box48
+    2300248: Box49
+    2300250: Box50
+    2300252: Box51
+    2300254: Box52
+    2300256: Box53
+    2300258: Box54
+    2300260: Box55
+    2300262: Box56
+    2300264: Box57
+    2300266: Box58
+    2300268: Box59
+    2300270: Box60
+    2300272: Box61
+    2300274: Box62
+    2300276: Box63
+    2300278: Box64
+    2300280: Box65
+    2300282: Box66
+    2300284: Box67
+    2300286: Box68
+    2300288: Box69
+    2300290: Box70
+    2300292: Box71
+    2300294: Box72
+    2300296: Box73
+    2300298: Box74
+    2300300: Box75
+    2300302: Box76
+    2300304: Box77
+    2300306: Box78
+    2300308: Box79
+    2300310: Box80
+    2300312: Box81
+    2300314: Box82
+    2300316: Box83
+    2300318: Box84
+    2300320: Box85
+    2300322: Box86
+    2300324: Box88
+    2300326: Box89
+    2300328: Box90
+    2300330: Box91
+    2300332: Box92
+    2300334: Box93
+    2300336: Box94
+    2300338: Box95
+    2300340: Box96
+    2300342: Box97
+    2300344: Box98
+    2300346: Box99
+    2300348: Cabin Carcass01
+    2300350: Cabin Carcass02
+    2300352: Cabin01
+    2300354: Cabin02
+    2300356: ChamferCyl02
+    2300358: ChamferCyl03
+    2300360: ChamferCyl04
+    2300362: ChamferCyl05
+    2300364: ChamferCyl06
+    2300366: ChamferCyl07
+    2300368: ChamferCyl08
+    2300370: ChamferCyl09
+    2300372: ChamferCyl10
+    2300374: ChamferCyl12
+    2300376: ChamferCyl13
+    2300378: ChamferCyl14
+    2300380: ChamferCyl15
+    2300382: ChamferCyl16
+    2300384: ChamferCyl17
+    2300386: ChamferCyl18
+    2300388: ChamferCyl19
+    2300390: ChamferCyl20
+    2300392: ChamferCyl21
+    2300394: ChamferCyl22
+    2300396: ChamferCyl23
+    2300398: ChamferCyl24
+    2300400: ChamferCyl25
+    2300402: ChamferCyl26
+    2300404: ChamferCyl27
+    2300406: ChamferCyl28
+    2300408: ChamferCyl29
+    2300410: Cylinder01
+    2300412: Cylinder02
+    2300414: Cylinder03
+    2300416: Cylinder04
+    2300418: Cylinder05
+    2300420: Cylinder06
+    2300422: Cylinder07
+    2300424: Cylinder08
+    2300426: Cylinder09
+    2300428: Cylinder10
+    2300430: Cylinder11
+    2300432: Cylinder12
+    2300434: Cylinder13
+    2300436: Cylinder14
+    2300438: Cylinder15
+    2300440: Cylinder16
+    2300442: Cylinder17
+    2300444: Cylinder18
+    2300446: Cylinder19
+    2300448: Cylinder20
+    2300450: Cylinder21
+    2300452: Cylinder22
+    2300454: Cylinder23
+    2300456: Fuselage
+    2300458: Inner Cabin
+    2300460: Left Air Intake
+    2300462: Left Back Turbina
+    2300464: Left Bottom Keel
+    2300466: Left Console Pilon
+    2300468: Left Eleron
+    2300470: Left Front Turbina
+    2300472: Left Inner Soplo
+    2300474: Left Keel
+    2300476: Left Main Gear Disk
+    2300478: Left Main Gear Door01
+    2300480: Left Main Gear Door02
+    2300482: Left Main Gear Fara
+    2300484: Left Main Gear Main Part
+    2300486: Left Main Gear Main Part01
+    2300488: Left Main Gear Porshen
+    2300490: Left Main Gear Porshen01
+    2300492: Left Main Gear Room
+    2300494: Left MGear Btm Corner
+    2300496: Left MGear Btm Corner01
+    2300498: Left MGear Holder
+    2300500: Left MGear Pnevmatic
+    2300502: Left MGear Top Corner
+    2300504: Left MGear Top Corner01
+    2300506: Left PGO
+    2300508: Left Pilon01
+    2300510: Left Pilon02
+    2300512: Left Pilon03
+    2300514: Left Pilon04
+    2300516: Left Pre-Wing
+    2300518: Left Rocket
+    2300520: Left Rocket01
+    2300522: Left Rocket02
+    2300524: Left Rocket03
+    2300526: Left Rocket04
+    2300528: Left Ruler
+    2300530: Left Soplo
+    2300532: Left Stabilizer
+    2300534: Left Wing
+    2300536: Line12
+    2300538: Line13
+    2300540: Line38
+    2300542: Line39
+    2300544: Nise Gear Left Fara
+    2300546: Nise Gear Right Fara
+    2300548: Nise Pnevmatic
+    2300550: Nose Gear Cylinder02
+    2300552: Nose Gear Disk
+    2300554: Nose Gear Door01
+    2300556: Nose Gear Door02
+    2300558: Nose Gear Room
+    2300560: Nose Gear Wheel Holder
+    2300562: Noze Gear Cylinder01
+    2300564: Noze Gear Mian
+    2300566: Noze Gear Porshen01
+    2300568: Noze Gear Porshen02
+    2300570: Operator Ctrl Panel
+    2300572: Operator Fuel Ctrl
+    2300574: Operator Horizon
+    2300576: Operator Seat
+    2300578: Pilot Ctrl Panel
+    2300580: Pilot Fuel Ctrl
+    2300582: Pilot Horizon
+    2300584: Pilot LCI
+    2300586: Pilot LCI Border
+    2300588: Pilot LCI Border01
+    2300590: Pilot LCI01
+    2300592: Pilot Seat
+    2300594: Pito Tube
+    2300596: Right Air Intake
+    2300598: Right Back Turbina
+    2300600: Right Bottom Keel
+    2300602: Right Console Pilon
+    2300604: Right Display
+    2300606: Right Display01
+    2300608: Right Display02
+    2300610: Right Display03
+    2300612: Right Eleron
+    2300614: Right Front Turbina
+    2300616: Right Inner Soplo
+    2300618: Right Keel
+    2300620: Right Main Gear Door01
+    2300622: Right Main Gear Door02
+    2300624: Right Main Gear Fara
+    2300626: Right Main Gear Room
+    2300628: Right MGear Holder
+    2300630: Right MGear Pnevmatic
+    2300632: Right PGO
+    2300634: Right Pilon01
+    2300636: Right Pilon02
+    2300638: Right Pilon03
+    2300640: Right Pilon04
+    2300642: Right Pre-Wing
+    2300644: Right Rocket
+    2300646: Right Rocket01
+    2300648: Right Rocket02
+    2300650: Right Rocket03
+    2300652: Right Rocket04
+    2300654: Right Ruler
+    2300656: Right Soplo
+    2300658: Right Stabilizer
+    2300660: Right Wing
+    2300662: Rightt Main Gear Disk
+    2300664: Trash Protector
+    2300666: Trash Protector Holder
+    3300000: Box01
+    3300002: Box02
+    3300004: Box03
+    3300006: Box04
+    3300008: Box05
+    3300010: Box06
+    3300012: Box07
+    3300014: Box08
+    3300016: Box09
+    3300018: Box10
+    3300020: Box100
+    3300022: Box101
+    3300024: Box102
+    3300026: Box103
+    3300028: Box104
+    3300030: Box105
+    3300032: Box106
+    3300034: Box107
+    3300036: Box108
+    3300038: Box109
+    3300040: Box11
+    3300042: Box110
+    3300044: Box111
+    3300046: Box112
+    3300048: Box113
+    3300050: Box114
+    3300052: Box115
+    3300054: Box116
+    3300056: Box117
+    3300058: Box118
+    3300060: Box119
+    3300062: Box12
+    3300064: Box120
+    3300066: Box121
+    3300068: Box122
+    3300070: Box123
+    3300072: Box124
+    3300074: Box125
+    3300076: Box126
+    3300078: Box127
+    3300080: Box128
+    3300082: Box129
+    3300084: Box13
+    3300086: Box130
+    3300088: Box131
+    3300090: Box132
+    3300092: Box133
+    3300094: Box134
+    3300096: Box135
+    3300098: Box136
+    3300100: Box137
+    3300102: Box138
+    3300104: Box139
+    3300106: Box14
+    3300108: Box140
+    3300110: Box141
+    3300112: Box142
+    3300114: Box143
+    3300116: Box144
+    3300118: Box145
+    3300120: Box146
+    3300122: Box147
+    3300124: Box148
+    3300126: Box149
+    3300128: Box15
+    3300130: Box150
+    3300132: Box151
+    3300134: Box152
+    3300136: Box153
+    3300138: Box154
+    3300140: Box155
+    3300142: Box156
+    3300144: Box157
+    3300146: Box158
+    3300148: Box159
+    3300150: Box16
+    3300152: Box160
+    3300154: Box161
+    3300156: Box162
+    3300158: Box163
+    3300160: Box164
+    3300162: Box165
+    3300164: Box166
+    3300166: Box167
+    3300168: Box168
+    3300170: Box169
+    3300172: Box17
+    3300174: Box170
+    3300176: Box171
+    3300178: Box172
+    3300180: Box173
+    3300182: Box174
+    3300184: Box175
+    3300186: Box18
+    3300188: Box19
+    3300190: Box20
+    3300192: Box21
+    3300194: Box22
+    3300196: Box23
+    3300198: Box24
+    3300200: Box25
+    3300202: Box26
+    3300204: Box27
+    3300206: Box28
+    3300208: Box29
+    3300210: Box30
+    3300212: Box31
+    3300214: Box32
+    3300216: Box33
+    3300218: Box34
+    3300220: Box35
+    3300222: Box36
+    3300224: Box37
+    3300226: Box38
+    3300228: Box39
+    3300230: Box40
+    3300232: Box41
+    3300234: Box42
+    3300236: Box43
+    3300238: Box44
+    3300240: Box45
+    3300242: Box46
+    3300244: Box47
+    3300246: Box48
+    3300248: Box49
+    3300250: Box50
+    3300252: Box51
+    3300254: Box52
+    3300256: Box53
+    3300258: Box54
+    3300260: Box55
+    3300262: Box56
+    3300264: Box57
+    3300266: Box58
+    3300268: Box59
+    3300270: Box60
+    3300272: Box61
+    3300274: Box62
+    3300276: Box63
+    3300278: Box64
+    3300280: Box65
+    3300282: Box66
+    3300284: Box67
+    3300286: Box68
+    3300288: Box69
+    3300290: Box70
+    3300292: Box71
+    3300294: Box72
+    3300296: Box73
+    3300298: Box74
+    3300300: Box75
+    3300302: Box76
+    3300304: Box77
+    3300306: Box78
+    3300308: Box79
+    3300310: Box80
+    3300312: Box81
+    3300314: Box82
+    3300316: Box83
+    3300318: Box84
+    3300320: Box85
+    3300322: Box86
+    3300324: Box88
+    3300326: Box89
+    3300328: Box90
+    3300330: Box91
+    3300332: Box92
+    3300334: Box93
+    3300336: Box94
+    3300338: Box95
+    3300340: Box96
+    3300342: Box97
+    3300344: Box98
+    3300346: Box99
+    3300348: Cabin Carcass01
+    3300350: Cabin Carcass02
+    3300352: Cabin01
+    3300354: Cabin02
+    3300356: ChamferCyl02
+    3300358: ChamferCyl03
+    3300360: ChamferCyl04
+    3300362: ChamferCyl05
+    3300364: ChamferCyl06
+    3300366: ChamferCyl07
+    3300368: ChamferCyl08
+    3300370: ChamferCyl09
+    3300372: ChamferCyl10
+    3300374: ChamferCyl12
+    3300376: ChamferCyl13
+    3300378: ChamferCyl14
+    3300380: ChamferCyl15
+    3300382: ChamferCyl16
+    3300384: ChamferCyl17
+    3300386: ChamferCyl18
+    3300388: ChamferCyl19
+    3300390: ChamferCyl20
+    3300392: ChamferCyl21
+    3300394: ChamferCyl22
+    3300396: ChamferCyl23
+    3300398: ChamferCyl24
+    3300400: ChamferCyl25
+    3300402: ChamferCyl26
+    3300404: ChamferCyl27
+    3300406: ChamferCyl28
+    3300408: ChamferCyl29
+    3300410: Cylinder01
+    3300412: Cylinder02
+    3300414: Cylinder03
+    3300416: Cylinder04
+    3300418: Cylinder05
+    3300420: Cylinder06
+    3300422: Cylinder07
+    3300424: Cylinder08
+    3300426: Cylinder09
+    3300428: Cylinder10
+    3300430: Cylinder11
+    3300432: Cylinder12
+    3300434: Cylinder13
+    3300436: Cylinder14
+    3300438: Cylinder15
+    3300440: Cylinder16
+    3300442: Cylinder17
+    3300444: Cylinder18
+    3300446: Cylinder19
+    3300448: Cylinder20
+    3300450: Cylinder21
+    3300452: Cylinder22
+    3300454: Cylinder23
+    3300456: Fuselage
+    3300458: Inner Cabin
+    3300460: Left Air Intake
+    3300462: Left Back Turbina
+    3300464: Left Bottom Keel
+    3300466: Left Console Pilon
+    3300468: Left Eleron
+    3300470: Left Front Turbina
+    3300472: Left Inner Soplo
+    3300474: Left Keel
+    3300476: Left Main Gear Disk
+    3300478: Left Main Gear Door01
+    3300480: Left Main Gear Door02
+    3300482: Left Main Gear Fara
+    3300484: Left Main Gear Main Part
+    3300486: Left Main Gear Main Part01
+    3300488: Left Main Gear Porshen
+    3300490: Left Main Gear Porshen01
+    3300492: Left Main Gear Room
+    3300494: Left MGear Btm Corner
+    3300496: Left MGear Btm Corner01
+    3300498: Left MGear Holder
+    3300500: Left MGear Pnevmatic
+    3300502: Left MGear Top Corner
+    3300504: Left MGear Top Corner01
+    3300506: Left PGO
+    3300508: Left Pilon01
+    3300510: Left Pilon02
+    3300512: Left Pilon03
+    3300514: Left Pilon04
+    3300516: Left Pre-Wing
+    3300518: Left Rocket
+    3300520: Left Rocket01
+    3300522: Left Rocket02
+    3300524: Left Rocket03
+    3300526: Left Rocket04
+    3300528: Left Ruler
+    3300530: Left Soplo
+    3300532: Left Stabilizer
+    3300534: Left Wing
+    3300536: Line12
+    3300538: Line13
+    3300540: Line38
+    3300542: Line39
+    3300544: Nise Gear Left Fara
+    3300546: Nise Gear Right Fara
+    3300548: Nise Pnevmatic
+    3300550: Nose Gear Cylinder02
+    3300552: Nose Gear Disk
+    3300554: Nose Gear Door01
+    3300556: Nose Gear Door02
+    3300558: Nose Gear Room
+    3300560: Nose Gear Wheel Holder
+    3300562: Noze Gear Cylinder01
+    3300564: Noze Gear Mian
+    3300566: Noze Gear Porshen01
+    3300568: Noze Gear Porshen02
+    3300570: Operator Ctrl Panel
+    3300572: Operator Fuel Ctrl
+    3300574: Operator Horizon
+    3300576: Operator Seat
+    3300578: Pilot Ctrl Panel
+    3300580: Pilot Fuel Ctrl
+    3300582: Pilot Horizon
+    3300584: Pilot LCI
+    3300586: Pilot LCI Border
+    3300588: Pilot LCI Border01
+    3300590: Pilot LCI01
+    3300592: Pilot Seat
+    3300594: Pito Tube
+    3300596: Right Air Intake
+    3300598: Right Back Turbina
+    3300600: Right Bottom Keel
+    3300602: Right Console Pilon
+    3300604: Right Display
+    3300606: Right Display01
+    3300608: Right Display02
+    3300610: Right Display03
+    3300612: Right Eleron
+    3300614: Right Front Turbina
+    3300616: Right Inner Soplo
+    3300618: Right Keel
+    3300620: Right Main Gear Door01
+    3300622: Right Main Gear Door02
+    3300624: Right Main Gear Fara
+    3300626: Right Main Gear Room
+    3300628: Right MGear Holder
+    3300630: Right MGear Pnevmatic
+    3300632: Right PGO
+    3300634: Right Pilon01
+    3300636: Right Pilon02
+    3300638: Right Pilon03
+    3300640: Right Pilon04
+    3300642: Right Pre-Wing
+    3300644: Right Rocket
+    3300646: Right Rocket01
+    3300648: Right Rocket02
+    3300650: Right Rocket03
+    3300652: Right Rocket04
+    3300654: Right Ruler
+    3300656: Right Soplo
+    3300658: Right Stabilizer
+    3300660: Right Wing
+    3300662: Rightt Main Gear Disk
+    3300664: Trash Protector
+    3300666: Trash Protector Holder
+    4300000: Fuselage
+    4300002: Cabin Carcass01
+    4300004: Cabin Carcass02
+    4300006: Inner Cabin
+    4300008: Right Wing
+    4300010: Right Stabilizer
+    4300012: Right Soplo
+    4300014: Right Pilon04
+    4300016: Right PGO
+    4300018: Right MGear Holder
+    4300020: Right Main Gear Room
+    4300022: Right Main Gear Door02
+    4300024: Right Main Gear Door01
+    4300026: Right Keel
+    4300028: Right Inner Soplo
+    4300030: Right Bottom Keel
+    4300032: Right Air Intake
+    4300034: Pito Tube
+    4300036: Nose Gear Room
+    4300038: Nose Gear Door02
+    4300040: Nose Gear Door01
+    4300042: Left Wing
+    4300044: Left Stabilizer
+    4300046: Left Soplo
+    4300048: Left Pilon04
+    4300050: Left PGO
+    4300052: Left MGear Holder
+    4300054: Left Main Gear Room
+    4300056: Left Main Gear Door02
+    4300058: Left Main Gear Door01
+    4300060: Left Keel
+    4300062: Left Inner Soplo
+    4300064: Left Bottom Keel
+    4300066: Left Air Intake
+    4300068: ChamferCyl12
+    4300070: Cabin01
+    4300072: Cabin02
+    4300074: ChamferCyl07
+    4300076: Right Pilon03
+    4300078: ChamferCyl06
+    4300080: Right Pilon02
+    4300082: ChamferCyl05
+    4300084: ChamferCyl04
+    4300086: Right Pilon01
+    4300088: ChamferCyl03
+    4300090: Right Console Pilon
+    4300092: Right Pre-Wing
+    4300094: Right Eleron
+    4300096: Pilot Ctrl Panel
+    4300098: ChamferCyl09
+    4300100: ChamferCyl10
+    4300102: Left Rocket04
+    4300104: Right Rocket04
+    4300106: Left Ruler
+    4300108: ChamferCyl13
+    4300110: Left Back Turbina
+    4300112: ChamferCyl14
+    4300114: ChamferCyl15
+    4300116: Left Front Turbina
+    4300118: Left Main Gear Main Part01
+    4300120: Cylinder08
+    4300122: Pilot Seat
+    4300124: Line39
+    4300126: Line38
+    4300128: Cylinder23
+    4300130: Cylinder22
+    4300132: Cylinder21
+    4300134: Cylinder20
+    4300136: Cylinder19
+    4300138: Cylinder18
+    4300140: ChamferCyl28
+    4300142: ChamferCyl27
+    4300144: ChamferCyl26
+    4300146: Operator Seat
+    4300148: Cylinder13
+    4300150: Operator Ctrl Panel
+    4300152: Cylinder14
+    4300154: ChamferCyl25
+    4300156: ChamferCyl24
+    4300158: ChamferCyl23
+    4300160: ChamferCyl22
+    4300162: ChamferCyl21
+    4300164: ChamferCyl20
+    4300166: ChamferCyl19
+    4300168: ChamferCyl18
+    4300170: ChamferCyl17
+    4300172: ChamferCyl16
+    4300174: Right Ruler
+    4300176: Right Back Turbina
+    4300178: Right Front Turbina
+    4300180: Cylinder15
+    4300182: Cylinder16
+    4300184: Cylinder17
+    4300186: Line12
+    4300188: Line13
+    4300190: Noze Gear Mian
+    4300192: Cylinder07
+    4300194: Cylinder06
+    4300196: ChamferCyl02
+    4300198: Left Pilon01
+    4300200: Left Pilon02
+    4300202: Left Pilon03
+    4300204: Left Console Pilon
+    4300206: Left Pre-Wing
+    4300208: Left Eleron
+    4300210: Left Main Gear Main Part
+    4300212: ChamferCyl29
+    4300214: ChamferCyl08
+    4300216: Left Main Gear Porshen
+    4300218: Left MGear Top Corner
+    4300220: Left Main Gear Fara
+    4300222: Box04
+    4300224: Right Display03
+    4300226: Left Rocket
+    4300228: Left Rocket03
+    4300230: Left Rocket02
+    4300232: Left Rocket01
+    4300234: Cylinder05
+    4300236: Box121
+    4300238: Nise Gear Left Fara
+    4300240: Nise Gear Right Fara
+    4300242: Noze Gear Porshen01
+    4300244: Box107
+    4300246: Noze Gear Porshen02
+    4300248: Nose Gear Cylinder02
+    4300250: Trash Protector Holder
+    4300252: Box89
+    4300254: Operator Horizon
+    4300256: Operator Fuel Ctrl
+    4300258: Pilot LCI
+    4300260: Pilot LCI Border01
+    4300262: Pilot LCI Border
+    4300264: Box61
+    4300266: Pilot Fuel Ctrl
+    4300268: Left Main Gear Porshen01
+    4300270: Left MGear Top Corner01
+    4300272: Right Display01
+    4300274: Pilot LCI01
+    4300276: Box01
+    4300278: Pilot Horizon
+    4300280: Right Rocket
+    4300282: Right Rocket01
+    4300284: Right Display
+    4300286: Right Rocket02
+    4300288: Right Rocket03
+    4300290: Right Display02
+    4300292: Box50
+    4300294: Box51
+    4300296: Box52
+    4300298: Box53
+    4300300: Box54
+    4300302: Box55
+    4300304: Box56
+    4300306: Box57
+    4300308: Box175
+    4300310: Box174
+    4300312: Box173
+    4300314: Box172
+    4300316: Box171
+    4300318: Box170
+    4300320: Box169
+    4300322: Box168
+    4300324: Box167
+    4300326: Box166
+    4300328: Box165
+    4300330: Box164
+    4300332: Box163
+    4300334: Box162
+    4300336: Box161
+    4300338: Box160
+    4300340: Box159
+    4300342: Box158
+    4300344: Box157
+    4300346: Box156
+    4300348: Box155
+    4300350: Box154
+    4300352: Box153
+    4300354: Box152
+    4300356: Box151
+    4300358: Box150
+    4300360: Box149
+    4300362: Box148
+    4300364: Box147
+    4300366: Box146
+    4300368: Box145
+    4300370: Box144
+    4300372: Box143
+    4300374: Box142
+    4300376: Box141
+    4300378: Left MGear Btm Corner
+    4300380: Left Main Gear Disk
+    4300382: Box59
+    4300384: Box140
+    4300386: Box139
+    4300388: Box03
+    4300390: Box138
+    4300392: Box02
+    4300394: Box137
+    4300396: Box21
+    4300398: Box20
+    4300400: Box136
+    4300402: Box135
+    4300404: Box134
+    4300406: Box19
+    4300408: Box133
+    4300410: Box132
+    4300412: Box131
+    4300414: Box130
+    4300416: Box129
+    4300418: Box128
+    4300420: Box127
+    4300422: Box126
+    4300424: Box125
+    4300426: Box124
+    4300428: Box18
+    4300430: Box17
+    4300432: Box16
+    4300434: Box123
+    4300436: Box122
+    4300438: Cylinder12
+    4300440: Cylinder11
+    4300442: Cylinder10
+    4300444: Cylinder09
+    4300446: Box120
+    4300448: Box119
+    4300450: Box118
+    4300452: Box117
+    4300454: Box116
+    4300456: Box115
+    4300458: Box114
+    4300460: Box113
+    4300462: Box112
+    4300464: Box111
+    4300466: Box110
+    4300468: Box109
+    4300470: Box108
+    4300472: Noze Gear Cylinder01
+    4300474: Box106
+    4300476: Box105
+    4300478: Nose Gear Wheel Holder
+    4300480: Box58
+    4300482: Box60
+    4300484: Cylinder01
+    4300486: Box104
+    4300488: Box15
+    4300490: Box14
+    4300492: Box103
+    4300494: Box05
+    4300496: Box12
+    4300498: Box102
+    4300500: Box11
+    4300502: Box101
+    4300504: Box10
+    4300506: Box09
+    4300508: Box08
+    4300510: Box100
+    4300512: Box99
+    4300514: Box98
+    4300516: Box97
+    4300518: Box96
+    4300520: Box95
+    4300522: Box94
+    4300524: Box93
+    4300526: Box92
+    4300528: Box91
+    4300530: Box90
+    4300532: Box88
+    4300534: Box86
+    4300536: Box85
+    4300538: Box84
+    4300540: Box83
+    4300542: Box82
+    4300544: Box81
+    4300546: Box80
+    4300548: Box79
+    4300550: Box78
+    4300552: Box77
+    4300554: Box76
+    4300556: Box75
+    4300558: Box74
+    4300560: Box73
+    4300562: Box72
+    4300564: Box71
+    4300566: Box70
+    4300568: Box69
+    4300570: Box68
+    4300572: Box67
+    4300574: Box66
+    4300576: Box65
+    4300578: Box64
+    4300580: Box63
+    4300582: Box62
+    4300584: Box49
+    4300586: Box48
+    4300588: Box47
+    4300590: Box46
+    4300592: Box45
+    4300594: Box44
+    4300596: Box43
+    4300598: Box42
+    4300600: Box41
+    4300602: Left MGear Btm Corner01
+    4300604: Right Main Gear Fara
+    4300606: Rightt Main Gear Disk
+    4300608: Cylinder02
+    4300610: Box40
+    4300612: Box39
+    4300614: Box38
+    4300616: Box37
+    4300618: Box07
+    4300620: Box36
+    4300622: Box06
+    4300624: Box13
+    4300626: Box29
+    4300628: Box30
+    4300630: Box28
+    4300632: Box35
+    4300634: Box34
+    4300636: Box33
+    4300638: Box32
+    4300640: Box31
+    4300642: Box27
+    4300644: Box26
+    4300646: Box25
+    4300648: Box24
+    4300650: Box23
+    4300652: Box22
+    4300654: Cylinder04
+    4300656: Cylinder03
+    4300658: Trash Protector
+    4300660: Nose Gear Disk
+    4300662: Left MGear Pnevmatic
+    4300664: Right MGear Pnevmatic
+    4300666: Nise Pnevmatic
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
