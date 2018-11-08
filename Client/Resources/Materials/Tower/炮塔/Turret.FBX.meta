@@ -1,0 +1,223 @@
+fileFormatVersion: 2
+guid: b6d7d1c5d26b53e468930da891b56ec0
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Body
+    100002: Cylinder001
+    100004: Pillars001
+    100006: Pillars002
+    100008: Pillars003
+    100010: Pillars004
+    100012: Pillars005
+    100014: Pillars006
+    100016: Pillars007
+    100018: Pillars008
+    100020: Prism001
+    100022: Prism002
+    100024: Prism003
+    100026: Prism004
+    100028: Prism005
+    100030: Prism006
+    100032: Prism007
+    100034: Prism008
+    100036: Tube001
+    100038: Tube002
+    100040: Tube003
+    100042: Tube004
+    100044: Tube005
+    100046: Tube006
+    100048: Tube007
+    100050: Tube008
+    100052: //RootNode
+    400000: Body
+    400002: Cylinder001
+    400004: Pillars001
+    400006: Pillars002
+    400008: Pillars003
+    400010: Pillars004
+    400012: Pillars005
+    400014: Pillars006
+    400016: Pillars007
+    400018: Pillars008
+    400020: Prism001
+    400022: Prism002
+    400024: Prism003
+    400026: Prism004
+    400028: Prism005
+    400030: Prism006
+    400032: Prism007
+    400034: Prism008
+    400036: Tube001
+    400038: Tube002
+    400040: Tube003
+    400042: Tube004
+    400044: Tube005
+    400046: Tube006
+    400048: Tube007
+    400050: Tube008
+    400052: //RootNode
+    2100000: 'Material #25'
+    2100002: 'Material #26'
+    2100004: 'Material #27'
+    2100006: 'Material #33'
+    2100008: 'Material #32'
+    2300000: Body
+    2300002: Cylinder001
+    2300004: Pillars001
+    2300006: Pillars002
+    2300008: Pillars003
+    2300010: Pillars004
+    2300012: Pillars005
+    2300014: Pillars006
+    2300016: Pillars007
+    2300018: Pillars008
+    2300020: Prism001
+    2300022: Prism002
+    2300024: Prism003
+    2300026: Prism004
+    2300028: Prism005
+    2300030: Prism006
+    2300032: Prism007
+    2300034: Prism008
+    2300036: Tube001
+    2300038: Tube002
+    2300040: Tube003
+    2300042: Tube004
+    2300044: Tube005
+    2300046: Tube006
+    2300048: Tube007
+    2300050: Tube008
+    3300000: Body
+    3300002: Cylinder001
+    3300004: Pillars001
+    3300006: Pillars002
+    3300008: Pillars003
+    3300010: Pillars004
+    3300012: Pillars005
+    3300014: Pillars006
+    3300016: Pillars007
+    3300018: Pillars008
+    3300020: Prism001
+    3300022: Prism002
+    3300024: Prism003
+    3300026: Prism004
+    3300028: Prism005
+    3300030: Prism006
+    3300032: Prism007
+    3300034: Prism008
+    3300036: Tube001
+    3300038: Tube002
+    3300040: Tube003
+    3300042: Tube004
+    3300044: Tube005
+    3300046: Tube006
+    3300048: Tube007
+    3300050: Tube008
+    4300000: Body
+    4300002: Cylinder001
+    4300004: Pillars001
+    4300006: Pillars002
+    4300008: Pillars003
+    4300010: Pillars004
+    4300012: Pillars005
+    4300014: Pillars006
+    4300016: Pillars007
+    4300018: Pillars008
+    4300020: Tube001
+    4300022: Tube002
+    4300024: Tube003
+    4300026: Tube004
+    4300028: Tube005
+    4300030: Tube006
+    4300032: Tube007
+    4300034: Tube008
+    4300036: Prism001
+    4300038: Prism002
+    4300040: Prism003
+    4300042: Prism004
+    4300044: Prism005
+    4300046: Prism006
+    4300048: Prism007
+    4300050: Prism008
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
