@@ -6,7 +6,7 @@ typedef unsigned int __uint32;
 typedef unsigned short __uint16;
 typedef unsigned char __uint8;
 
-class CONFIG
+class ServerConfig
 {
 public:
     static __uint32 MAX_PLAYER_NUMBER;//最大玩家数量
@@ -22,6 +22,10 @@ public:
     static __uint32 HEARTBEAT_CHECK_NUMBER;//心跳检测次数
 
     static __uint32 PORT;//端口号
+
+    static float DESTROY_COMPENSATION;//摧毁塔的补偿
+
+    static void ReadConfig();//读取配置文件
 };
 
 #define MSG_SEND_LENGTH 1024
